@@ -1,140 +1,55 @@
-/* ==========================================================================
-   AgriNusa - Interactive JavaScript Logic
-   ========================================================================== */
+// PehTani - Agriculture Marketplace
+// Interactive JavaScript
 
 document.addEventListener('DOMContentLoaded', () => {
-    initHeaderScroll();
-    initMobileNav();
-    initProductFilters();
     initStatsCounter();
+    initNavbarScroll();
 });
 
-/* Navbar Scroll Effect */
-function initHeaderScroll() {
-    const header = document.getElementById('header');
+/* Sticky Navbar Shadow Enhancement */
+function initNavbarScroll() {
+    const navbar = document.getElementById('navbar');
+    if (!navbar) return;
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 40) {
-            header.classList.add('scrolled');
+        if (window.scrollY > 50) {
+            navbar.style.boxShadow = '0 2px 12px rgba(0,0,0,0.12)';
         } else {
-            header.classList.remove('scrolled');
+            navbar.style.boxShadow = '0 1px 3px rgba(0,0,0,0.08)';
         }
     });
 }
 
-/* Mobile Menu Navigation */
-function initMobileNav() {
-    const mobileToggle = document.getElementById('mobileToggle');
-    const navMenu = document.getElementById('navMenu');
-
-    if (mobileToggle && navMenu) {
-        mobileToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            const icon = mobileToggle.querySelector('i');
-            if (navMenu.classList.contains('active')) {
-                icon.className = 'fa-solid fa-xmark';
-            } else {
-                icon.className = 'fa-solid fa-bars';
-            }
-        });
-
-        // Close menu when clicking links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                mobileToggle.querySelector('i').className = 'fa-solid fa-bars';
-            });
-        });
-    }
-}
-
-/* Interactive Product Category Filters */
-function initProductFilters() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const productCards = document.querySelectorAll('.product-card');
-
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Remove active class
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-
-            const filterValue = btn.getAttribute('data-filter');
-
-            productCards.forEach(card => {
-                if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                    card.style.display = 'block';
-                    card.style.animation = 'fadeIn 0.4s ease';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-    });
-}
-
-/* Animated Counter Effect for Stats */
+/* Animated Stats Counter */
 function initStatsCounter() {
-    const statNumbers = document.querySelectorAll('.stat-number');
+    const counters = document.querySelectorAll('.stat-number[data-target]');
     let animated = false;
 
-    window.addEventListener('scroll', () => {
-        const statsSection = document.getElementById('dampak');
-        if (!statsSection) return;
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !animated) {
+                animated = true;
+                counters.forEach(counter => {
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    const duration = 1800;
+                    const stepTime = 20;
+                    const steps = duration / stepTime;
+                    const increment = target / steps;
+                    let current = 0;
 
-        const sectionPos = statsSection.getBoundingClientRect().top;
-        const screenPos = window.innerHeight / 1.2;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            counter.innerText = target.toLocaleString('id-ID');
+                            clearInterval(timer);
+                        } else {
+                            counter.innerText = Math.floor(current).toLocaleString('id-ID');
+                        }
+                    }, stepTime);
+                });
+            }
+        });
+    }, { threshold: 0.3 });
 
-        if (sectionPos < screenPos && !animated) {
-            animated = true;
-            statNumbers.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const duration = 2000;
-                const stepTime = 20;
-                const totalSteps = duration / stepTime;
-                const increment = target / totalSteps;
-                let current = 0;
-
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        counter.innerText = target.toLocaleString('id-ID');
-                        clearInterval(timer);
-                    } else {
-                        counter.innerText = Math.floor(current).toLocaleString('id-ID');
-                    }
-                }, stepTime);
-            });
-        }
-    });
-}
-
-/* Product Detail Modal Handling */
-function openModal(title, desc, price, imgUrl) {
-    const modal = document.getElementById('productModal');
-    document.getElementById('modalTitle').innerText = title;
-    document.getElementById('modalDesc').innerText = desc;
-    document.getElementById('modalPrice').innerText = price;
-    document.getElementById('modalImg').src = imgUrl;
-
-    modal.classList.add('active');
-}
-
-function closeModal() {
-    const modal = document.getElementById('productModal');
-    modal.classList.remove('active');
-}
-
-/* Form Submit Handler */
-function handleFormSubmit(event) {
-    event.preventDefault();
-    const successMsg = document.getElementById('formSuccessMsg');
-    const form = document.getElementById('contactForm');
-
-    if (successMsg) {
-        successMsg.style.display = 'block';
-        form.reset();
-        setTimeout(() => {
-            successMsg.style.display = 'none';
-        }, 5000);
-    }
+    const statsSection = document.querySelector('.stats-section');
+    if (statsSection) observer.observe(statsSection);
 }
