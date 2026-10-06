@@ -52,5 +52,4 @@ Desain UI terinspirasi dari Figma: **Pemasaran Pertanian - Ramayuda Mahardika**
 ## Developer
 **frestea** — [@fresteanaa](https://github.com/fresteanaa)
 ---
-
 *©2026 PehTani - Platform Pertanian Nusantara*
