@@ -1,0 +1,98 @@
+.main-navbar-wrapper {
+  width: 100%;
+  padding-top: 14px;
+  position: relative;
+  z-index: 20;
+}
+
+.navbar-card {
+  background: #ffffff;
+  border-radius: var(--radius-md);
+  padding: 14px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.navbar-logo {
+  font-size: 24px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo-peh {
+  color: #1e3a2e;
+}
+
+.logo-tani {
+  color: var(--primary);
+  position: relative;
+}
+
+.logo-tani::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  right: -5px;
+  width: 4px;
+  height: 4px;
+  background-color: #f06449;
+  border-radius: 50%;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-menu a {
+  color: #1e293b;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.navbar-menu a:hover {
+  color: var(--primary);
+  background-color: rgba(0, 132, 104, 0.08);
+}
+
+.navbar-toggle {
+  display: none;
+  background: none;
+  font-size: 18px;
+  color: #1e293b;
+  padding: 4px 8px;
+}
+
+@media (max-width: 768px) {
+  .navbar-card {
+    padding: 12px 20px;
+  }
+  
+  .navbar-toggle {
+    display: block;
+  }
+
+  .navbar-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 20px;
+    background: #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    padding: 12px 18px;
+    margin-top: 8px;
+  }
+
+  .navbar-menu.active {
+    display: block;
+  }
+}
