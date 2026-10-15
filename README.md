@@ -31,8 +31,12 @@ Platform marketplace pertanian yang menghubungkan petani langsung dengan pembeli
 
 ```
 Pertanian/
-├── index.html       # Halaman utama
-├── style.css        # Stylesheet
+├── FE/              # Frontend React + Vite & Preview
+│   ├── preview.html # Preview langsung di browser (Double-click)
+│   ├── src/         # Komponen React (Hero, StepBar, Products, dll.)
+│   └── package.json # Konfigurasi Vite + React
+├── index.html       # Halaman utama (HTML standalone)
+├── style.css        # Stylesheet utama
 ├── script.js        # JavaScript interaktif
 └── README.md        # Dokumentasi proyek
 ```
