@@ -1,0 +1,1034 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PehTani - Platform Penjualan Hasil Pertanian Langsung Dari Petani</title>
+  <meta name="description" content="Menghubungkan petani langsung dengan pembeli untuk menciptakan ekosistem pertanian yang lebih adil dan transparan." />
+  
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- React 18 & Babel for instant browser execution without Node -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+    :root {
+      --primary: #008468;
+      --primary-hover: #007058;
+      --primary-dark: #00604b;
+      --footer-bg: #00745b;
+      --hero-btn: #008b74;
+      --badge-orange: #f06449;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+      --bg-light: #f8fafc;
+      --white: #ffffff;
+      --border-light: #e2e8f0;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+      --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.12);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --radius-full: 9999px;
+      --font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-family);
+      color: var(--text-dark);
+      background-color: var(--white);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Utility Bar */
+    .utility-bar {
+      width: 100%;
+      padding: 12px 0 8px 0;
+      position: relative;
+      z-index: 20;
+    }
+    .utility-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .utility-links {
+      display: flex;
+      gap: 24px;
+    }
+    .utility-links a {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 13px;
+      font-weight: 500;
+    }
+    .utility-links a:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+    .utility-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn-utility-outline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 18px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 600;
+      background: transparent;
+      transition: all 0.2s ease;
+    }
+    .btn-utility-outline:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: #ffffff;
+    }
+    .btn-utility-solid {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 22px;
+      border-radius: var(--radius-full);
+      background: #11382b;
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .btn-utility-solid:hover {
+      background: #0a251c;
+      transform: translateY(-1px);
+    }
+
+    /* Navbar */
+    .main-navbar-wrapper {
+      width: 100%;
+      padding-top: 14px;
+      position: relative;
+      z-index: 20;
+    }
+    .navbar-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+    }
+    .navbar-logo {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: inline-flex;
+      align-items: center;
+    }
+    .logo-peh {
+      color: #1e3a2e;
+    }
+    .logo-tani {
+      color: var(--primary);
+      position: relative;
+    }
+    .logo-tani::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      right: -5px;
+      width: 4px;
+      height: 4px;
+      background-color: #f06449;
+      border-radius: 50%;
+    }
+    .navbar-right {
+      display: flex;
+      align-items: center;
+    }
+    .navbar-menu a {
+      color: #1e293b;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+    }
+    .navbar-menu a:hover {
+      color: var(--primary);
+      background-color: rgba(0, 132, 104, 0.08);
+    }
+    .navbar-toggle {
+      display: none;
+      background: none;
+      font-size: 18px;
+      color: #1e293b;
+      padding: 4px 8px;
+    }
+
+    /* Hero */
+    .hero-section {
+      position: relative;
+      background-image: url('https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      min-height: 580px;
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 70px;
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, rgba(12, 38, 28, 0.72) 0%, rgba(6, 22, 16, 0.92) 100%);
+      z-index: 1;
+    }
+    .hero-container {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      padding-top: 50px;
+    }
+    .hero-content {
+      text-align: center;
+      max-width: 740px;
+      margin: 0 auto;
+    }
+    .hero-tag {
+      display: inline-block;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      letter-spacing: 0.3px;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    }
+    .hero-title {
+      color: #ffffff;
+      font-size: 38px;
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.5px;
+      margin-bottom: 18px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    }
+    .hero-description {
+      color: rgba(255, 255, 255, 0.88);
+      font-size: 13.5px;
+      line-height: 1.65;
+      margin: 0 auto 28px auto;
+      max-width: 620px;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    }
+    .btn-hero {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--hero-btn);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 15px rgba(0, 139, 116, 0.4);
+      transition: all 0.25s ease;
+    }
+    .btn-hero:hover {
+      background-color: #007763;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 139, 116, 0.5);
+    }
+
+    /* Step Bar */
+    .step-bar-wrapper {
+      position: relative;
+      margin-top: -38px;
+      z-index: 25;
+    }
+    .step-bar-card {
+      background-color: var(--primary);
+      border-radius: var(--radius-md);
+      padding: 24px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 12px 30px rgba(0, 132, 104, 0.25);
+    }
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      min-width: 130px;
+    }
+    .step-circle {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      background-color: var(--primary);
+    }
+    .step-text {
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+    }
+    .step-line {
+      flex: 1;
+      height: 2px;
+      background-color: rgba(255, 255, 255, 0.5);
+      margin: 0 20px 30px 20px;
+    }
+
+    /* Fresh Produce */
+    .produce-section {
+      padding: 60px 0 50px 0;
+      background-color: #ffffff;
+    }
+    .produce-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 28px;
+    }
+    .produce-title-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .badge-harvest {
+      display: inline-block;
+      align-self: flex-start;
+      background-color: var(--badge-orange);
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.2px;
+    }
+    .produce-heading {
+      color: var(--primary);
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .produce-more-link {
+      color: var(--primary);
+      font-size: 14px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .produce-more-link:hover {
+      color: var(--primary-hover);
+      transform: translateX(3px);
+    }
+    .produce-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+    .produce-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.05);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .produce-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.09);
+    }
+    .produce-img-wrap {
+      width: 100%;
+      height: 200px;
+      overflow: hidden;
+      background-color: #f1f5f9;
+    }
+    .produce-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .produce-card:hover .produce-img-wrap img {
+      transform: scale(1.04);
+    }
+    .produce-details {
+      padding: 18px 20px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .produce-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 3px;
+    }
+    .produce-category {
+      font-size: 12px;
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .produce-price {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .produce-unit {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .produce-location {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 4px;
+    }
+    .produce-sold {
+      font-size: 12px;
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    /* About Section */
+    .about-section {
+      padding: 60px 0;
+      background-color: #ffffff;
+    }
+    .about-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+    }
+    .about-content {
+      flex: 1;
+      max-width: 520px;
+    }
+    .about-title {
+      font-size: 36px;
+      font-weight: 800;
+      color: #111827;
+      line-height: 1.25;
+      letter-spacing: -0.6px;
+      margin-bottom: 18px;
+    }
+    .about-description {
+      font-size: 14.5px;
+      color: #4b5563;
+      line-height: 1.65;
+      margin-bottom: 28px;
+      max-width: 440px;
+    }
+    .btn-about {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--primary);
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 14px rgba(0, 132, 104, 0.35);
+      transition: all 0.2s ease;
+    }
+    .btn-about:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(0, 132, 104, 0.45);
+    }
+    .about-image-card {
+      flex: 1;
+      max-width: 440px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+      padding: 10px;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.08);
+      background: #ffffff;
+    }
+    .about-image-card img {
+      width: 100%;
+      height: 340px;
+      object-fit: cover;
+      border-radius: calc(var(--radius-md) - 4px);
+    }
+
+    /* Stats Section */
+    .stats-section {
+      padding: 40px 0 60px 0;
+      background-color: #ffffff;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: left;
+    }
+    .stat-card {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-number {
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.1;
+      margin-bottom: 8px;
+      letter-spacing: -0.5px;
+    }
+    .stat-label {
+      font-size: 13.5px;
+      color: #4b5563;
+      line-height: 1.4;
+      font-weight: 500;
+    }
+
+    /* Feature Cards */
+    .features-section {
+      padding: 20px 0 70px 0;
+      background-color: #ffffff;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .feature-card {
+      position: relative;
+      height: 420px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+    }
+    .feature-card-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(14, 28, 22, 0.2) 0%,
+        rgba(10, 24, 18, 0.65) 45%,
+        rgba(7, 18, 14, 0.94) 100%
+      );
+      z-index: 1;
+    }
+    .feature-card-body {
+      position: relative;
+      z-index: 2;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .feature-title {
+      color: #ffffff;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 12px;
+      letter-spacing: -0.2px;
+    }
+    .feature-desc {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 12.5px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .btn-feature {
+      background-color: var(--primary);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      transition: all 0.2s ease;
+    }
+    .btn-feature:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Footer */
+    .main-footer {
+      background-color: var(--footer-bg);
+      padding: 22px 0;
+      color: #ffffff;
+    }
+    .footer-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-copyright {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: -0.1px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 13px;
+      letter-spacing: -0.1px;
+    }
+    .footer-links a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .produce-grid,
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        row-gap: 32px;
+      }
+    }
+    @media (max-width: 768px) {
+      .hero-section {
+        min-height: auto;
+        padding-bottom: 60px;
+      }
+      .hero-title {
+        font-size: 26px;
+      }
+      .step-bar-card {
+        padding: 18px 16px;
+        flex-direction: column;
+        gap: 16px;
+      }
+      .step-line {
+        display: none;
+      }
+      .step-item {
+        flex-direction: row;
+        gap: 12px;
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .step-circle {
+        margin-bottom: 0;
+      }
+      .about-container {
+        flex-direction: column;
+        gap: 36px;
+      }
+      .about-image-card {
+        max-width: 100%;
+        width: 100%;
+      }
+      .about-image-card img {
+        height: 260px;
+      }
+    }
+    @media (max-width: 600px) {
+      .produce-grid,
+      .features-grid,
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-container {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    function UtilityBar() {
+      return (
+        <div className="utility-bar">
+          <div className="container utility-container">
+            <div className="utility-links">
+              <a href="#bantuan">Bantuan &amp; Kontak</a>
+              <a href="#kebijakan">Kebijakan Privasi</a>
+              <a href="#syarat">Syarat dan Ketentuan</a>
+            </div>
+            <div className="utility-actions">
+              <a href="#buat-akun" className="btn-utility-outline">Buat Akun</a>
+              <a href="#masuk" className="btn-utility-solid">Masuk</a>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function Navbar() {
+      return (
+        <header className="main-navbar-wrapper">
+          <div className="container">
+            <div className="navbar-card">
+              <a href="#" className="navbar-logo">
+                <span className="logo-peh">peh</span>
+                <span className="logo-tani">tani</span>
+              </a>
+              <div className="navbar-right">
+                <nav className="navbar-menu">
+                  <a href="#tentang">Tentang Website</a>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </header>
+      );
+    }
+
+    function Hero() {
+      return (
+        <section className="hero-section">
+          <div className="hero-overlay"></div>
+          <UtilityBar />
+          <Navbar />
+          <div className="container hero-container">
+            <div className="hero-content">
+              <span className="hero-tag">Sayuran &amp; Buah</span>
+              <h1 className="hero-title">
+                Platform Penjualan Hasil<br />
+                Pertanian Langsung Dari Petani
+              </h1>
+              <p className="hero-description">
+                Menghubungkan petani langsung dengan pembeli untuk menciptakan ekosistem pertanian yang lebih adil dan transparan. Petani dapat dengan mudah memasarkan hasil panen, dan pembeli dapat menemukan produk segar berkualitas langsung dari sumbernya.
+              </p>
+              <a href="#produk" className="btn-hero">
+                Temukan Hasil Pertanian Segar
+              </a>
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function StepBar() {
+      const steps = [
+        { number: 1, title: 'Membuat Akun' },
+        { number: 2, title: 'Tambahkan Hasil Pertanian' },
+        { number: 3, title: 'Pesan dan Bayar' },
+      ];
+      return (
+        <div className="step-bar-wrapper">
+          <div className="container">
+            <div className="step-bar-card">
+              {steps.map((step, idx) => (
+                <React.Fragment key={step.number}>
+                  <div className="step-item">
+                    <div className="step-circle">{step.number}</div>
+                    <span className="step-text">{step.title}</span>
+                  </div>
+                  {idx < steps.length - 1 && <div className="step-line"></div>}
+                </React.Fragment>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    function FreshProduce() {
+      const products = [
+        {
+          id: 1,
+          name: 'Tomat Merah Segar',
+          category: 'Sayuran',
+          price: 'Rp12.000',
+          unit: '/ Kg',
+          location: 'Lembang, Jawa Barat',
+          sold: 'Terjual 226 kg',
+          image: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=600&q=80',
+        },
+        {
+          id: 2,
+          name: 'Cabai Rawit Merah',
+          category: 'Sayuran',
+          price: 'Rp30.000',
+          unit: '/ Kg',
+          location: 'Klaten, Jawa Tengah',
+          sold: 'Terjual 188 kg',
+          image: 'https://images.unsplash.com/photo-1583119022894-919a68a3d0e3?auto=format&fit=crop&w=600&q=80',
+        },
+        {
+          id: 3,
+          name: 'Wortel Segar',
+          category: 'Sayuran',
+          price: 'Rp10.000',
+          unit: '/ Kg',
+          location: 'Bandung, Jawa Barat',
+          sold: 'Terjual 333 kg',
+          image: 'https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?auto=format&fit=crop&w=600&q=80',
+        },
+      ];
+
+      return (
+        <section className="produce-section" id="produk">
+          <div className="container">
+            <div className="produce-header">
+              <div className="produce-title-group">
+                <span className="badge-harvest">Baru Saja Dipanen</span>
+                <h2 className="produce-heading">Sayuran Segar</h2>
+              </div>
+              <a href="#lainnya" className="produce-more-link">
+                Lainnya <i className="fa-solid fa-arrow-right"></i>
+              </a>
+            </div>
+
+            <div className="produce-grid">
+              {products.map((item) => (
+                <div key={item.id} className="produce-card">
+                  <div className="produce-img-wrap">
+                    <img src={item.image} alt={item.name} />
+                  </div>
+                  <div className="produce-details">
+                    <h3 className="produce-name">{item.name}</h3>
+                    <span className="produce-category">{item.category}</span>
+                    <div className="produce-price">
+                      {item.price} <span className="produce-unit">{item.unit}</span>
+                    </div>
+                    <div className="produce-location">{item.location}</div>
+                    <div className="produce-sold">{item.sold}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function AboutSection() {
+      return (
+        <section className="about-section" id="tentang">
+          <div className="container about-container">
+            <div className="about-content">
+              <h2 className="about-title">
+                Dapatkan sayuran segar<br />
+                dari rumah Anda
+              </h2>
+              <p className="about-description">
+                Temukan produk segar dan sehat untuk kebutuhan sehari-hari serta dukung petani Indonesia untuk terus berkembang
+              </p>
+              <a href="#produk" className="btn-about">
+                Temukan Hasil Pertanian Segar
+              </a>
+            </div>
+
+            <div className="about-image-card">
+              <img
+                src="https://images.unsplash.com/photo-1610832958506-aa56368176cf?auto=format&fit=crop&w=800&q=80"
+                alt="Sayuran dan buah segar dari rumah"
+              />
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function StatsSection() {
+      const stats = [
+        { value: '3000+', label: 'Pesanan Per Bulan' },
+        { value: '1000+', label: 'Pelanggan Aktif' },
+        { value: '24/7', label: 'Akses Platform Tanpa Henti' },
+        { value: '30+', label: 'Mitra Lokal dan Distributor Resmi' },
+      ];
+
+      return (
+        <section className="stats-section">
+          <div className="container">
+            <div className="stats-grid">
+              {stats.map((stat, idx) => (
+                <div key={idx} className="stat-card">
+                  <div className="stat-number">{stat.value}</div>
+                  <div className="stat-label">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function FeatureCards() {
+      const features = [
+        {
+          id: 1,
+          title: 'Teknologi yang Mengubah Cara Petani Bekerja',
+          description:
+            'Berbagai inovasi teknologi dalam dunia pertanian yang membantu meningkatkan efisiensi dan hasil panen. Dan alat pertanian modern hingga aplikasi berbasis data, teknologi memberikan dampak besar pada cara petani mengelola lahan mereka.',
+          image: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=800&q=80',
+        },
+        {
+          id: 2,
+          title: 'Menjaga Kesehatan Tanah',
+          description:
+            'Tips tentang pengelolaan tanah yang baik, penggunaan pupuk organik, dan teknik rotasi tanaman.',
+          image: 'https://images.unsplash.com/photo-1464226184884-fa280b87c399?auto=format&fit=crop&w=800&q=80',
+        },
+        {
+          id: 3,
+          title: 'Bibit Pertanian yang Berkualitas',
+          description:
+            'Memberikan informasi lengkap untuk petani pemula maupun yang berpengalaman untuk memilih bibit.',
+          image: 'https://images.unsplash.com/photo-1523348837708-15d4a09cfac2?auto=format&fit=crop&w=800&q=80',
+        },
+      ];
+
+      return (
+        <section className="features-section" id="edukasi">
+          <div className="container">
+            <div className="features-grid">
+              {features.map((item) => (
+                <div
+                  key={item.id}
+                  className="feature-card"
+                  style={{ backgroundImage: `url(${item.image})` }}
+                >
+                  <div className="feature-card-overlay"></div>
+                  <div className="feature-card-body">
+                    <h3 className="feature-title">{item.title}</h3>
+                    <p className="feature-desc">{item.description}</p>
+                    <button className="btn-feature">Lihat Lebih Lanjut</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    function Footer() {
+      return (
+        <footer className="main-footer">
+          <div className="container footer-container">
+            <div className="footer-copyright">
+              @2024, PEHTANI, Ramayuda Mahardika
+            </div>
+            <div className="footer-links">
+              <a href="#kebijakan">Kebijakan Privasi</a>
+              <a href="#syarat">Syarat dan Ketentuan</a>
+              <a href="#bantuan">Bantuan &amp; Kontak</a>
+            </div>
+          </div>
+        </footer>
+      );
+    }
+
+    function App() {
+      return (
+        <div className="app-root">
+          <Hero />
+          <StepBar />
+          <FreshProduce />
+          <AboutSection />
+          <StatsSection />
+          <FeatureCards />
+          <Footer />
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>
+
