@@ -1,0 +1,352 @@
+/* ==========================================================================
+   PehTani — Login Page
+   ========================================================================== */
+
+/* ─── Layout ─── */
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  font-family: var(--font-family, 'Plus Jakarta Sans', 'Inter', sans-serif);
+  color: #1e293b;
+}
+
+/* ─── Navbar Minimal ─── */
+.login-navbar {
+  padding: 20px 40px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #ffffff;
+}
+
+.login-logo {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.login-logo .logo-peh {
+  color: #1e3a2e;
+}
+
+.login-logo .logo-tani {
+  color: #008468;
+  font-style: italic;
+}
+
+/* ─── Main Content ─── */
+.login-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 52px 20px 60px 20px;
+}
+
+/* ─── Heading ─── */
+.login-heading {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.login-heading h1 {
+  font-size: 30px;
+  font-weight: 800;
+  color: #008468;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+.login-heading p {
+  font-size: 14px;
+  color: #64748b;
+}
+
+/* ─── Card ─── */
+.login-card {
+  width: 100%;
+  max-width: 560px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* ─── Divider ─── */
+.login-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #d1d5db;
+}
+
+/* ─── Social Buttons ─── */
+.login-social-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 22px 28px;
+}
+
+.btn-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+  cursor: pointer;
+  transition: background 0.18s ease, box-shadow 0.18s ease;
+}
+
+.btn-social:hover {
+  background: #f8fafc;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.btn-facebook {
+  color: #1877F2;
+}
+
+/* ─── Form ─── */
+.login-form {
+  padding: 24px 28px 20px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Error Banner */
+.login-error {
+  background: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #dc2626;
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: 4px;
+}
+
+/* Form Field */
+.login-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.login-field label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.login-field input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  color: #1e293b;
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  background: #ffffff;
+}
+
+.login-field input:focus {
+  border-color: #008468;
+  box-shadow: 0 0 0 3px rgba(0, 132, 104, 0.12);
+}
+
+/* Password wrapper */
+.input-password-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-password-wrap input {
+  padding-right: 44px;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  padding: 0;
+  color: #64748b;
+  transition: color 0.15s;
+}
+
+.toggle-password:hover {
+  color: #1e293b;
+}
+
+/* Forgot password */
+.login-forgot {
+  font-size: 13px;
+  color: #64748b;
+  margin-top: -8px;
+}
+
+.login-forgot a {
+  color: #008468;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.login-forgot a:hover {
+  color: #007058;
+}
+
+/* ─── Bottom Action Bar ─── */
+.login-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  gap: 12px;
+}
+
+.login-register-text {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.login-register-text a {
+  color: #008468;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.login-register-text a:hover {
+  color: #007058;
+}
+
+/* Masuk Akun Button */
+.btn-masuk {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 26px;
+  background: #008468;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.15s ease;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.btn-masuk:hover:not(:disabled) {
+  background: #007058;
+  transform: translateY(-1px);
+}
+
+.btn-masuk:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.btn-arrow {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* ─── Footer ─── */
+.login-footer {
+  background: #00745b;
+  padding: 18px 40px;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.login-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1120px;
+  margin: 0 auto;
+  gap: 16px;
+}
+
+.login-footer-inner span {
+  font-size: 13px;
+}
+
+.login-footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.login-footer-links a {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.login-footer-links a:hover {
+  opacity: 0.75;
+  text-decoration: underline;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 600px) {
+  .login-navbar {
+    padding: 16px 20px;
+  }
+
+  .login-social-row {
+    grid-template-columns: 1fr;
+    padding: 18px 20px;
+    gap: 10px;
+  }
+
+  .login-form {
+    padding: 20px 20px 16px 20px;
+  }
+
+  .login-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 16px 20px;
+  }
+
+  .btn-masuk {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .login-heading h1 {
+    font-size: 24px;
+  }
+
+  .login-footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .login-footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+}
+
