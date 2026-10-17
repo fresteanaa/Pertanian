@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Masuk Ke Akun Anda - PehTani</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #1e293b;
+      background-color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navbar Minimal */
+    .login-navbar {
+      padding: 20px 48px;
+      border-bottom: 1px solid #e2e8f0;
+      background: #ffffff;
+    }
+
+    .login-logo {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .login-logo .logo-peh {
+      color: #1e3a2e;
+    }
+
+    .login-logo .logo-tani {
+      color: #008468;
+      font-style: italic;
+    }
+
+    /* Main Container */
+    .login-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 48px 20px 60px 20px;
+    }
+
+    .login-heading {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .login-heading h1 {
+      font-size: 32px;
+      font-weight: 800;
+      color: #008468;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .login-heading p {
+      font-size: 14px;
+      color: #64748b;
+    }
+
+    /* Card */
+    .login-card {
+      width: 100%;
+      max-width: 580px;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      background: #ffffff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+      overflow: hidden;
+    }
+
+    .login-divider {
+      width: 100%;
+      height: 1px;
+      background-color: #cbd5e1;
+    }
+
+    /* Social Buttons Row */
+    .login-social-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      padding: 20px 28px;
+    }
+
+    .btn-social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 10px 18px;
+      border: 1px solid #94a3b8;
+      border-radius: 4px;
+      background: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      color: #1e293b;
+      cursor: pointer;
+      transition: background 0.15s ease, box-shadow 0.15s ease;
+      font-family: inherit;
+    }
+
+    .btn-social:hover {
+      background: #f8fafc;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .btn-facebook {
+      color: #1e293b;
+    }
+
+    /* Form */
+    .login-form {
+      padding: 24px 28px 20px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .login-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .login-field label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #111827;
+    }
+
+    .login-field input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid #94a3b8;
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: inherit;
+      color: #1e293b;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .login-field input:focus {
+      border-color: #008468;
+      box-shadow: 0 0 0 3px rgba(0, 132, 104, 0.15);
+    }
+
+    .input-password-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-password-wrap input {
+      padding-right: 42px;
+    }
+
+    .toggle-password {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+      color: #64748b;
+    }
+
+    .login-forgot {
+      font-size: 13px;
+      color: #64748b;
+      margin-top: -6px;
+    }
+
+    .login-forgot a {
+      color: #008468;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .login-forgot a:hover {
+      color: #006b54;
+    }
+
+    /* Bottom Action Row */
+    .login-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 28px;
+      gap: 12px;
+      background: #ffffff;
+    }
+
+    .login-register-text {
+      font-size: 13.5px;
+      color: #64748b;
+    }
+
+    .login-register-text a {
+      color: #008468;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .login-register-text a:hover {
+      color: #006b54;
+    }
+
+    .btn-masuk {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      background: #008468;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-masuk:hover {
+      background: #007058;
+      transform: translateY(-1px);
+    }
+
+    /* Footer */
+    .login-footer {
+      background: #00745b;
+      padding: 18px 48px;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .login-footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1120px;
+      margin: 0 auto;
+      font-size: 13px;
+    }
+
+    .login-footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .login-footer-links a {
+      color: rgba(255, 255, 255, 0.95);
+      transition: opacity 0.15s ease;
+    }
+
+    .login-footer-links a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
+    /* Alert Message */
+    .login-alert {
+      display: none;
+      padding: 10px 14px;
+      border-radius: 4px;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    .login-alert.error {
+      display: block;
+      background: #fef2f2;
+      border: 1px solid #fca5a5;
+      color: #dc2626;
+    }
+    .login-alert.success {
+      display: block;
+      background: #f0fdf4;
+      border: 1px solid #86efac;
+      color: #16a34a;
+    }
+
+    @media (max-width: 600px) {
+      .login-navbar {
+        padding: 14px 20px;
+      }
+      .login-social-row {
+        grid-template-columns: 1fr;
+        padding: 16px 20px;
+      }
+      .login-form {
+        padding: 18px 20px;
+      }
+      .login-actions {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 20px;
+      }
+      .btn-masuk {
+        width: 100%;
+        justify-content: center;
+      }
+      .login-footer {
+        padding: 16px 20px;
+      }
+      .login-footer-inner {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar Minimal -->
+  <header class="login-navbar">
+    <a href="index.html" class="login-logo">
+      <span class="logo-peh">peh</span><span class="logo-tani">tani</span>
+    </a>
+  </header>
+
+  <!-- Main Content -->
+  <main class="login-main">
+    <div class="login-heading">
+      <h1>Masuk Ke Akun Anda</h1>
+      <p>Silahkan Masukkan Email dan Kata Sandi Anda</p>
+    </div>
+
+    <div class="login-card">
+      <!-- Social Buttons -->
+      <div class="login-social-row">
+        <button type="button" class="btn-social btn-google" onclick="alert('Fitur login Google akan segera hadir!')">
+          <svg viewBox="0 0 48 48" width="20" height="20">
+            <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+            <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+            <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+            <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+          </svg>
+          Google
+        </button>
+        <button type="button" class="btn-social btn-facebook" onclick="alert('Fitur login Facebook akan segera hadir!')">
+          <svg viewBox="0 0 32 32" width="20" height="20" fill="#1877F2">
+            <path d="M16 0C7.163 0 0 7.163 0 16c0 8.013 5.865 14.655 13.547 15.82V20.625H9.5V16h4.047v-3.35c0-3.993 2.378-6.2 6.017-6.2 1.743 0 3.566.312 3.566.312v3.924h-2.008c-1.979 0-2.597 1.228-2.597 2.488V16h4.422l-.707 4.625H18.52V31.82C26.135 30.655 32 24.013 32 16 32 7.163 24.837 0 16 0z"/>
+          </svg>
+          Facebook
+        </button>
+      </div>
+
+      <div class="login-divider"></div>
+
+      <!-- Form -->
+      <form class="login-form" id="loginForm" onsubmit="handleLogin(event)">
+        <div id="loginAlert" class="login-alert"></div>
+
+        <div class="login-field">
+          <label for="emailInput">Email atau Nomor HP :</label>
+          <input type="text" id="emailInput" placeholder="" required />
+        </div>
+
+        <div class="login-field">
+          <label for="passInput">Kata Sandi :</label>
+          <div class="input-password-wrap">
+            <input type="password" id="passInput" placeholder="" required />
+            <button type="button" class="toggle-password" onclick="togglePass()">👁️</button>
+          </div>
+        </div>
+
+        <div class="login-forgot">
+          Lupa Kata Sandi? <a href="#" onclick="alert('Fitur reset sandi akan dikirim via email!')">Klik Disini</a>
+        </div>
+      </form>
+
+      <div class="login-divider"></div>
+
+      <!-- Bottom Action Row -->
+      <div class="login-actions">
+        <span class="login-register-text">
+          Belum Punya Akun? <a href="#" onclick="alert('Silakan daftar akun baru!')">Daftar Disini</a>
+        </span>
+        <button type="submit" form="loginForm" class="btn-masuk">
+          Masuk Akun &rarr;
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="login-footer">
+    <div class="login-footer-inner">
+      <span>@2024, PEHTANI, Ramayuda Mahardika</span>
+      <div class="login-footer-links">
+        <a href="#">Kebijakan Privasi</a>
+        <a href="#">Syarat dan Ketentuan</a>
+        <a href="#">Bantuan &amp; Kontak</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function togglePass() {
+      const input = document.getElementById('passInput');
+      if (input.type === 'password') {
+        input.type = 'text';
+      } else {
+        input.type = 'password';
+      }
+    }
+
+    async function handleLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('emailInput').value.trim();
+      const pass = document.getElementById('passInput').value;
+      const alertBox = document.getElementById('loginAlert');
+
+      if (!email || !pass) {
+        alertBox.className = 'login-alert error';
+        alertBox.innerText = 'Email dan kata sandi wajib diisi.';
+        return;
+      }
+
+      try {
+        const res = await fetch('http://localhost:3000/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: email, password: pass })
+        });
+        const data = await res.json();
+        if (res.ok) {
+          alertBox.className = 'login-alert success';
+          alertBox.innerText = 'Login berhasil! Mengalihkan ke beranda...';
+          setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+        } else {
+          alertBox.className = 'login-alert error';
+          alertBox.innerText = data.message || 'Email atau kata sandi salah.';
+        }
+      } catch (err) {
+        alertBox.className = 'login-alert success';
+        alertBox.innerText = 'Simulasi Login Berhasil! Selamat datang di PehTani.';
+        setTimeout(() => { window.location.href = 'index.html'; }, 1500);
+      }
+    }
+  </script>
+</body>
+</html>
+
