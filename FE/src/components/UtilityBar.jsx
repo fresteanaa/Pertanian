@@ -11,8 +11,8 @@ export default function UtilityBar() {
           <a href="#syarat">Syarat dan Ketentuan</a>
         </div>
         <div className="utility-actions">
-          <a href="#buat-akun" className="btn-utility-outline">Buat Akun</a>
-          <a href="#masuk" className="btn-utility-solid">Masuk</a>
+          <a href="/daftar" className="btn-utility-outline">Buat Akun</a>
+          <a href="/masuk" className="btn-utility-solid">Masuk</a>
         </div>
       </div>
     </div>
