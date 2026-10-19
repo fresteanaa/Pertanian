@@ -4,9 +4,9 @@ Panduan backend untuk platform **PehTani**. Di dunia pengembangan web modern ber
 
 ---
 
-## 🔍 Perbedaan Utama: NestJS vs Next.js
+## Perbedaan Utama: NestJS vs Next.js
 
-| Fitur |  NextJS (Yang ada di folder ini) | ⚡ Next.js |
+| Fitur |  NextJS (Yang ada di folder ini) |  Next.js |
 | :--- | :--- | :--- |
 | **Kategori** | Backend Framework murni (Server-side API) | Fullstack React Framework (Frontend + API Routes) |
 | **Fokus Utama** | REST API, GraphQL, Microservices, WebSocket | Server-Side Rendering (SSR), Static Site (SSG), UI React + Route Handlers |
