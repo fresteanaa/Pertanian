@@ -6,7 +6,7 @@ export default function UtilityBar() {
     <div className="utility-bar">
       <div className="container utility-container">
         <div className="utility-links">
-          <a href="#bantuan">Bantuan &amp; Kontak</a>
+          <a href="/bantuan">Bantuan &amp; Kontak</a>
           <a href="#kebijakan">Kebijakan Privasi</a>
           <a href="#syarat">Syarat dan Ketentuan</a>
         </div>

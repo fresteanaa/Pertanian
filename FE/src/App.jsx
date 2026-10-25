@@ -9,6 +9,8 @@ import StatsSection from './components/StatsSection';
 import FeatureCards from './components/FeatureCards';
 import Footer from './components/Footer';
 import LoginPage from './pages/LoginPage';
+import AboutPage from './pages/AboutPage';
+import HelpContactPage from './pages/HelpContactPage';
 
 // ─── Halaman Utama ─────────────────────────────────────────────────────────
 function HomePage() {
@@ -36,8 +38,11 @@ export default function App() {
         {/* Halaman Login */}
         <Route path="/masuk" element={<LoginPage />} />
 
-        {/* Halaman Daftar — akan dibuat berikutnya */}
-        {/* <Route path="/daftar" element={<RegisterPage />} /> */}
+        {/* Halaman Tentang */}
+        <Route path="/tentang" element={<AboutPage />} />
+
+        {/* Halaman Bantuan & Kontak */}
+        <Route path="/bantuan" element={<HelpContactPage />} />
       </Routes>
     </BrowserRouter>
   );

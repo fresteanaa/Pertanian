@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tentang PehTani - Platform Pemasaran Hasil Pertanian</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #1e293b;
+      background-color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ─── Top Brand Header ─── */
+    .about-top-bar {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 22px 20px 14px 20px;
+      background: #ffffff;
+    }
+
+    .about-brand-logo {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .about-brand-logo .logo-peh {
+      color: #1e3a2e;
+    }
+
+    .about-brand-logo .logo-tani {
+      color: #008468;
+      font-style: italic;
+    }
+
+    /* ─── Secondary Nav / Action Bar ─── */
+    .about-nav-bar {
+      padding: 12px 0 24px 0;
+      background: #ffffff;
+    }
+
+    .about-nav-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Back Button */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 6px 12px;
+      color: #111827;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      transition: transform 0.15s ease, color 0.15s ease;
+    }
+
+    .btn-back:hover {
+      color: #008468;
+      transform: translateX(-3px);
+    }
+
+    .btn-back-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-back-icon svg {
+      color: #111827;
+      transition: color 0.15s ease;
+    }
+
+    .btn-back:hover .btn-back-icon svg {
+      color: #008468;
+    }
+
+    /* Subnav Links */
+    .about-subnav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .subnav-item {
+      font-size: 14px;
+      font-weight: 500;
+      color: #4b5563;
+      transition: color 0.15s ease;
+    }
+
+    .subnav-item:hover {
+      color: #008468;
+    }
+
+    .subnav-item.active {
+      color: #008468;
+      font-weight: 700;
+    }
+
+    /* ─── Main Content ─── */
+    .about-main-content {
+      flex: 1;
+      padding: 20px 0 60px 0;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    /* ─── Image Collage ─── */
+    .about-collage {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      height: 520px;
+    }
+
+    .collage-left {
+      height: 100%;
+    }
+
+    .img-tall {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    .collage-right {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      height: 100%;
+    }
+
+    .img-top,
+    .img-bottom {
+      width: 100%;
+      height: calc(50% - 7px);
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    /* ─── Right Column: Text Content ─── */
+    .about-info-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .about-title {
+      font-size: 38px;
+      font-weight: 800;
+      color: #000000;
+      line-height: 1.22;
+      letter-spacing: -0.6px;
+      margin-bottom: 24px;
+    }
+
+    .about-paragraphs {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .about-paragraphs p {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: #374151;
+      letter-spacing: -0.1px;
+    }
+
+    /* ─── Footer ─── */
+    .about-footer {
+      background-color: #00745b;
+      padding: 22px 0;
+      color: #ffffff;
+    }
+
+    .about-footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: -0.1px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 13px;
+      transition: opacity 0.15s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
+    /* ─── Responsive Media Queries ─── */
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+
+      .about-collage {
+        height: 420px;
+      }
+
+      .about-title {
+        font-size: 30px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .about-nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .about-subnav-links {
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .about-collage {
+        grid-template-columns: 1fr;
+        height: auto;
+      }
+
+      .img-tall {
+        height: 280px;
+      }
+
+      .collage-right {
+        flex-direction: row;
+        height: 180px;
+      }
+
+      .img-top,
+      .img-bottom {
+        height: 100%;
+        width: 50%;
+      }
+
+      .about-title {
+        font-size: 26px;
+      }
+
+      .about-footer-inner {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Brand Header -->
+  <header class="about-top-bar">
+    <a href="index.html" class="about-brand-logo">
+      <span class="logo-peh">peh</span><span class="logo-tani">tani</span>
+    </a>
+  </header>
+
+  <!-- Secondary Nav / Action Bar -->
+  <div class="about-nav-bar">
+    <div class="container about-nav-container">
+      <a href="index.html" class="btn-back">
+        <span class="btn-back-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 8 8 12 12 16"></polyline>
+            <line x1="16" y1="12" x2="8" y2="12"></line>
+          </svg>
+        </span>
+        <span class="btn-back-text">Kembali</span>
+      </a>
+
+      <nav class="about-subnav-links">
+        <a href="tentang.html" class="subnav-item active">Tentang</a>
+        <a href="bantuan.html" class="subnav-item">Bantuan &amp; Kontak</a>
+        <a href="#kebijakan" class="subnav-item">Kebijakan Privasi</a>
+        <a href="#syarat" class="subnav-item">Syarat dan Ketentuan</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="about-main-content">
+    <div class="container about-grid">
+      <!-- Left Column: Image Collage -->
+      <div class="about-collage">
+        <div className="collage-left">
+          <img
+            src="https://images.unsplash.com/photo-1595974482597-4b8da8879bc5?auto=format&fit=crop&w=800&q=80"
+            alt="Petani di dalam greenhouse sayuran"
+            class="img-tall"
+          />
+        </div>
+        <div class="collage-right">
+          <img
+            src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=700&q=80"
+            alt="Lahan pertanian dan rumah di bukit hijau"
+            class="img-top"
+          />
+          <img
+            src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=700&q=80"
+            alt="Ladang tanaman jagung di waktu senja"
+            class="img-bottom"
+          />
+        </div>
+      </div>
+
+      <!-- Right Column: Text Content -->
+      <div class="about-info-col">
+        <h1 class="about-title">
+          Platform Pemasaran<br />
+          Hasil Pertanian
+        </h1>
+
+        <div class="about-paragraphs">
+          <p>
+            Platform ini menghubungkan petani langsung dengan konsumen (B2C) dan bisnis lain (B2B), memungkinkan petani menjual hasil panen tanpa perantara, yang meningkatkan keuntungan mereka dan menurunkan harga bagi konsumen.
+          </p>
+
+          <p>
+            Transparansi pasokan juga tercipta melalui informasi stok, kualitas, dan harga secara real-time, memudahkan pengguna melihat ketersediaan produk dan profil petani.
+          </p>
+
+          <p>
+            Fitur pra-pemesanan membantu petani mengelola permintaan sebelum panen, mengurangi surplus atau kekurangan. Dukungan pembelian lokal mengurangi biaya dan emisi logistik, menciptakan rantai distribusi yang lebih singkat.
+          </p>
+
+          <p>
+            Platform ini juga menyediakan edukasi dan komunitas untuk meningkatkan keterampilan petani serta data penting untuk analisis hasil panen dan tren penjualan, mendukung pengambilan keputusan di sektor pertanian.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="about-footer">
+    <div class="container about-footer-inner">
+      <span class="footer-copy">@2024, PEHTANI, Ramayuda Mahardika</span>
+      <div class="footer-links">
+        <a href="#kebijakan">Kebijakan Privasi</a>
+        <a href="#syarat">Syarat dan Ketentuan</a>
+        <a href="bantuan.html">Bantuan &amp; Kontak</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
+

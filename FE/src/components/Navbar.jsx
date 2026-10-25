@@ -8,14 +8,14 @@ export default function Navbar() {
     <header className="main-navbar-wrapper">
       <div className="container">
         <div className="navbar-card">
-          <a href="#" className="navbar-logo">
+          <a href="/" className="navbar-logo">
             <span className="logo-peh">peh</span>
             <span className="logo-tani">tani</span>
           </a>
 
           <div className="navbar-right">
             <nav className={`navbar-menu ${mobileMenuOpen ? 'active' : ''}`}>
-              <a href="#tentang" onClick={() => setMobileMenuOpen(false)}>
+              <a href="/tentang" onClick={() => setMobileMenuOpen(false)}>
                 Tentang Website
               </a>
             </nav>
