@@ -1,6 +1,4 @@
-#  Panduan Alur Kerja: Fokus FE Dulu, Baru BE (Git Workflow)
 
-##  Alur Besar Pengerjaan
 ```mermaid
 flowchart TD
     A[" Branch: main\n(Fondasi Utama)"] -->|"git checkout -b feat/frontend"| B[" Branch: feat/frontend\n(Selesaikan SEMUA Halaman UI)"]
@@ -19,9 +17,7 @@ flowchart TD
 ---
 
 ## Langkah Praktis di Terminal 
-
 ### Langkah 1: Buat & Pindah ke Branch `feat/frontend`
-Jalankan di terminal VS Code Anda:
 ```bash
 git checkout -b feat/frontend
 ```
