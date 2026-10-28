@@ -2,7 +2,7 @@
 
 Implementasi desain UI PehTani berbasis **React + Vite**.
 
-## 📁 Struktur Folder
+##  Struktur Folder
 
 ```
 FE/
