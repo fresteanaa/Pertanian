@@ -1,0 +1,259 @@
+/* ==========================================================================
+   PehTani — Halaman Pilih Role (Daftar Sebagai)
+   Matching the Figma Design Specification
+   ========================================================================== */
+
+.register-role-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  font-family: var(--font-family, 'Plus Jakarta Sans', 'Inter', sans-serif);
+  color: #1e293b;
+}
+
+/* ─── Main Content ─── */
+.role-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px 80px 20px;
+}
+
+.role-container {
+  width: 100%;
+  max-width: 680px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ─── Header ─── */
+.role-header {
+  margin-bottom: 36px;
+  max-width: 520px;
+}
+
+.role-title {
+  color: #008468;
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+
+.role-subtitle {
+  color: #64748b;
+  font-size: 13.5px;
+  line-height: 1.65;
+  letter-spacing: -0.1px;
+}
+
+/* ─── Cards Grid ─── */
+.role-cards-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 28px;
+  width: 100%;
+}
+
+.role-card {
+  width: 190px;
+  height: 190px;
+  background: #ffffff;
+  border: 1.5px solid #1e293b;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  user-select: none;
+  outline: none;
+}
+
+.role-card:hover {
+  transform: translateY(-4px);
+  border-color: #008468;
+  box-shadow: 0 10px 24px rgba(0, 132, 104, 0.12);
+}
+
+.role-card.selected {
+  border-color: #008468;
+  border-width: 2px;
+  background-color: rgba(0, 132, 104, 0.04);
+  box-shadow: 0 8px 20px rgba(0, 132, 104, 0.15);
+  transform: translateY(-2px);
+}
+
+.role-card.selected .role-name {
+  color: #008468;
+}
+
+.role-icon-wrap {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  color: #1e293b;
+  transition: color 0.2s ease;
+}
+
+.role-card:hover .role-icon-wrap,
+.role-card.selected .role-icon-wrap {
+  color: #008468;
+}
+
+.role-svg {
+  width: 58px;
+  height: 58px;
+}
+
+.role-name {
+  font-size: 17px;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.2px;
+  margin: 0;
+  transition: color 0.2s ease;
+}
+
+/* ─── Feedback / Continue Action ─── */
+.role-feedback-box {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 8px;
+  padding: 14px 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.role-feedback-box p {
+  font-size: 13.5px;
+  color: #166534;
+  margin: 0;
+}
+
+.btn-continue {
+  background: #008468;
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s ease;
+  white-space: nowrap;
+}
+
+.btn-continue:hover {
+  background: #007058;
+}
+
+/* ─── Helper Link ─── */
+.role-footer-help {
+  font-size: 13.5px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+.role-footer-help .link-login {
+  color: #008468;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  margin-left: 4px;
+}
+
+.role-footer-help .link-login:hover {
+  color: #006e56;
+}
+
+/* ─── Footer ─── */
+.role-footer {
+  background-color: #00745b;
+  padding: 22px 0;
+  color: #ffffff;
+}
+
+.role-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-copy {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: -0.1px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 13px;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.footer-links a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 520px) {
+  .role-cards-grid {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .role-card {
+    width: 100%;
+    max-width: 240px;
+    height: 160px;
+  }
+
+  .role-title {
+    font-size: 28px;
+  }
+
+  .role-feedback-box {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .role-footer-inner {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  }
+}
+

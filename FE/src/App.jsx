@@ -11,6 +11,7 @@ import Footer from './components/Footer';
 import LoginPage from './pages/LoginPage';
 import AboutPage from './pages/AboutPage';
 import HelpContactPage from './pages/HelpContactPage';
+import RegisterRolePage from './pages/RegisterRolePage';
 
 // ─── Halaman Utama ─────────────────────────────────────────────────────────
 function HomePage() {
@@ -37,6 +38,9 @@ export default function App() {
 
         {/* Halaman Login */}
         <Route path="/masuk" element={<LoginPage />} />
+
+        {/* Halaman Pilih Role Pendaftaran */}
+        <Route path="/daftar" element={<RegisterRolePage />} />
 
         {/* Halaman Tentang */}
         <Route path="/tentang" element={<AboutPage />} />

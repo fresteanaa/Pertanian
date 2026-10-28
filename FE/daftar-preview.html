@@ -1,0 +1,394 @@
+<!-- Standalone preview for Daftar Sebagai (Choose Role) -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daftar Sebagai - PehTani</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #1e293b;
+      background-color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ─── Main Content ─── */
+    .role-main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px 80px 20px;
+    }
+
+    .role-container {
+      width: 100%;
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* ─── Header ─── */
+    .role-header {
+      margin-bottom: 36px;
+      max-width: 520px;
+    }
+
+    .role-title {
+      color: #008468;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    .role-subtitle {
+      color: #64748b;
+      font-size: 13.5px;
+      line-height: 1.65;
+      letter-spacing: -0.1px;
+    }
+
+    /* ─── Cards Grid ─── */
+    .role-cards-grid {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      margin-bottom: 28px;
+      width: 100%;
+    }
+
+    .role-card {
+      width: 190px;
+      height: 190px;
+      background: #ffffff;
+      border: 1.5px solid #1e293b;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      user-select: none;
+      outline: none;
+    }
+
+    .role-card:hover {
+      transform: translateY(-4px);
+      border-color: #008468;
+      box-shadow: 0 10px 24px rgba(0, 132, 104, 0.12);
+    }
+
+    .role-card.selected {
+      border-color: #008468;
+      border-width: 2px;
+      background-color: rgba(0, 132, 104, 0.04);
+      box-shadow: 0 8px 20px rgba(0, 132, 104, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .role-card.selected .role-name {
+      color: #008468;
+    }
+
+    .role-icon-wrap {
+      width: 72px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      color: #1e293b;
+      transition: color 0.2s ease;
+    }
+
+    .role-card:hover .role-icon-wrap,
+    .role-card.selected .role-icon-wrap {
+      color: #008468;
+    }
+
+    .role-svg {
+      width: 58px;
+      height: 58px;
+    }
+
+    .role-name {
+      font-size: 17px;
+      font-weight: 800;
+      color: #111827;
+      letter-spacing: -0.2px;
+      margin: 0;
+      transition: color 0.2s ease;
+    }
+
+    /* ─── Feedback / Continue Action ─── */
+    .role-feedback-box {
+      display: none;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 8px;
+      padding: 14px 20px;
+      margin-bottom: 20px;
+      align-items: center;
+      gap: 16px;
+      animation: fadeIn 0.25s ease;
+    }
+
+    .role-feedback-box.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .role-feedback-box p {
+      font-size: 13.5px;
+      color: #166534;
+      margin: 0;
+    }
+
+    .btn-continue {
+      background: #008468;
+      color: #ffffff;
+      border: none;
+      border-radius: 9999px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.18s ease;
+      white-space: nowrap;
+    }
+
+    .btn-continue:hover {
+      background: #007058;
+    }
+
+    /* ─── Helper Link ─── */
+    .role-footer-help {
+      font-size: 13.5px;
+      color: #64748b;
+      margin-top: 4px;
+    }
+
+    .role-footer-help .link-login {
+      color: #008468;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      margin-left: 4px;
+    }
+
+    .role-footer-help .link-login:hover {
+      color: #006e56;
+    }
+
+    /* ─── Footer ─── */
+    .role-footer {
+      background-color: #00745b;
+      padding: 22px 0;
+      color: #ffffff;
+    }
+
+    .role-footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: -0.1px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.95);
+      font-size: 13px;
+      text-decoration: none;
+      transition: opacity 0.15s ease;
+    }
+
+    .footer-links a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 520px) {
+      .role-cards-grid {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .role-card {
+        width: 100%;
+        max-width: 240px;
+        height: 160px;
+      }
+
+      .role-title {
+        font-size: 28px;
+      }
+
+      .role-feedback-box {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+
+      .role-footer-inner {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Content -->
+  <main class="role-main">
+    <div class="role-container">
+      <div class="role-header">
+        <h1 class="role-title">Daftar Sebagai</h1>
+        <p className="role-subtitle">
+          Silakan pilih jenis akun yang sesuai untuk kebutuhan Anda. Setiap akun memiliki akses yang berbeda dalam menggunakan platform ini.
+        </p>
+      </div>
+
+      <div class="role-cards-grid">
+        <!-- Card 1: Petani -->
+        <div class="role-card" id="cardPetani" onclick="selectRole('petani')">
+          <div class="role-icon-wrap">
+            <svg class="role-svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 26c0-6 5-10 12-10s12 4 12 10" />
+              <path d="M10 26h36" />
+              <path d="M22 16c2-4 8-4 12 0" />
+              <path d="M20 26v4a8 8 0 0 0 16 0v-4" />
+              <circle cx="25" cy="30" r="1" fill="currentColor" />
+              <circle cx="31" cy="30" r="1" fill="currentColor" />
+              <path d="M26 33c1 1 3 1 4 0" />
+              <path d="M25 38v3" />
+              <path d="M31 38v3" />
+              <path d="M18 48c0-5 4-7 10-7s10 2 10 7" />
+              <path d="M24 41v15" />
+              <path d="M32 41v15" />
+              <path d="M47 30v26" />
+              <path d="M43 30v7a4 4 0 0 0 8 0v-7" />
+              <path d="M47 30v7" />
+            </svg>
+          </div>
+          <h2 class="role-name">Petani</h2>
+        </div>
+
+        <!-- Card 2: Pembeli -->
+        <div class="role-card" id="cardPembeli" onclick="selectRole('pembeli')">
+          <div class="role-icon-wrap">
+            <svg class="role-svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="28" cy="22" r="9" />
+              <path d="M12 48c0-8 7-14 16-14" />
+              <circle cx="48" cy="40" r="10" />
+              <path d="M43 36h1.5l1.8 6h5.2l1.5-4.5H45" />
+              <circle cx="46.5" cy="44" r="1" fill="currentColor" />
+              <circle cx="51.5" cy="44" r="1" fill="currentColor" />
+            </svg>
+          </div>
+          <h2 class="role-name">Pembeli</h2>
+        </div>
+      </div>
+
+      <div class="role-feedback-box" id="feedbackBox">
+        <p id="feedbackText">Anda memilih mendaftar sebagai <strong>Petani</strong>.</p>
+        <button type="button" class="btn-continue" onclick="continueRegister()">
+          Lanjutkan Pendaftaran &rarr;
+        </button>
+      </div>
+
+      <div class="role-footer-help">
+        <span>Sudah memiliki akun? </span>
+        <a href="login-preview.html" class="link-login">Masuk Disini</a>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="role-footer">
+    <div class="container role-footer-inner">
+      <span class="footer-copy">@2024, PEHTANI, Ramayuda Mahardika</span>
+      <div class="footer-links">
+        <a href="#kebijakan">Kebijakan Privasi</a>
+        <a href="#syarat">Syarat dan Ketentuan</a>
+        <a href="bantuan-preview.html">Bantuan &amp; Kontak</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentRole = null;
+
+    function selectRole(role) {
+      currentRole = role;
+      document.getElementById('cardPetani').classList.remove('selected');
+      document.getElementById('cardPembeli').classList.remove('selected');
+
+      const card = role === 'petani' ? document.getElementById('cardPetani') : document.getElementById('cardPembeli');
+      card.classList.add('selected');
+
+      const feedback = document.getElementById('feedbackBox');
+      const text = document.getElementById('feedbackText');
+      const roleLabel = role === 'petani' ? 'Petani' : 'Pembeli';
+      text.innerHTML = `Anda memilih mendaftar sebagai <strong>${roleLabel}</strong>.`;
+      feedback.classList.add('active');
+    }
+
+    function continueRegister() {
+      const roleLabel = currentRole === 'petani' ? 'Petani' : 'Pembeli';
+      alert(`Lanjutkan ke formulir registrasi sebagai ${roleLabel}!`);
+    }
+  </script>
+</body>
+</html>
+
