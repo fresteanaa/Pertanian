@@ -1,0 +1,312 @@
+/* ==========================================================================
+   PehTani — Register Farmer Page (Daftar Sebagai Petani)
+   ========================================================================== */
+
+.register-farmer-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  font-family: var(--font-family, 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  color: #1e293b;
+}
+
+/* ─── Main Content ─── */
+.farmer-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px 80px 20px;
+}
+
+/* ─── Header ─── */
+.farmer-header {
+  text-align: center;
+  max-width: 580px;
+  margin-bottom: 36px;
+}
+
+.farmer-title {
+  font-size: 34px;
+  font-weight: 800;
+  color: #008468;
+  letter-spacing: -0.5px;
+  margin: 0 0 12px 0;
+}
+
+.farmer-subtitle {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #64748b;
+  margin: 0;
+  padding: 0 10px;
+}
+
+/* ─── Card Box ─── */
+.farmer-card {
+  width: 100%;
+  max-width: 660px;
+  border: 1px solid #71717a;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.farmer-card-body {
+  padding: 32px 32px 28px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Error Message */
+.farmer-error-msg {
+  background-color: #fef2f2;
+  border: 1px solid #fca5a5;
+  color: #dc2626;
+  font-size: 13.5px;
+  padding: 10px 14px;
+  border-radius: 4px;
+}
+
+/* Field Group */
+.farmer-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.farmer-label {
+  font-size: 14.5px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* Standard Input */
+.farmer-input {
+  width: 100%;
+  height: 42px;
+  padding: 8px 14px;
+  border: 1px solid #71717a;
+  border-radius: 3px;
+  font-size: 14.5px;
+  font-family: inherit;
+  color: #1e293b;
+  background-color: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.farmer-input:focus {
+  border-color: #008468;
+  box-shadow: 0 0 0 2px rgba(0, 132, 104, 0.15);
+}
+
+/* 2 Columns Layout */
+.farmer-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* Phone Input Group with Flag */
+.phone-input-group {
+  display: flex;
+  align-items: stretch;
+  border: 1px solid #71717a;
+  border-radius: 3px;
+  background-color: #ffffff;
+  height: 42px;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.phone-input-group:focus-within {
+  border-color: #008468;
+  box-shadow: 0 0 0 2px rgba(0, 132, 104, 0.15);
+}
+
+.phone-prefix {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  background-color: #ffffff;
+  border-right: 1px solid #71717a;
+  user-select: none;
+}
+
+/* Indonesian Flag */
+.id-flag {
+  width: 20px;
+  height: 14px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #cbd5e1;
+  border-radius: 1px;
+  overflow: hidden;
+  box-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.15);
+}
+
+.flag-red {
+  flex: 1;
+  background-color: #ef4444;
+}
+
+.flag-white {
+  flex: 1;
+  background-color: #ffffff;
+}
+
+.prefix-code {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.phone-field-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 8px 12px;
+  font-size: 14.5px;
+  font-family: inherit;
+  color: #1e293b;
+  background: transparent;
+  width: 100%;
+}
+
+/* Divider Line */
+.farmer-card-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #71717a;
+}
+
+/* Footer Section of Card */
+.farmer-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px;
+}
+
+.farmer-back-link {
+  font-size: 13.5px;
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.farmer-back-link:hover {
+  color: #008468;
+}
+
+/* Submit Button */
+.btn-farmer-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 28px;
+  background-color: #008767;
+  color: #ffffff;
+  font-size: 14.5px;
+  font-weight: 600;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.18s ease, transform 0.12s ease;
+  font-family: inherit;
+  margin-left: auto;
+}
+
+.btn-farmer-submit:hover {
+  background-color: #007357;
+  transform: translateY(-1px);
+}
+
+/* ─── Page Footer ─── */
+.farmer-footer {
+  background-color: #00745b;
+  padding: 18px 40px;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.farmer-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1120px;
+  margin: 0 auto;
+  gap: 16px;
+}
+
+.farmer-footer .footer-copy {
+  font-size: 13px;
+}
+
+.farmer-footer .footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.farmer-footer .footer-links a {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.farmer-footer .footer-links a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 640px) {
+  .farmer-main {
+    padding: 36px 16px 48px 16px;
+  }
+
+  .farmer-title {
+    font-size: 26px;
+  }
+
+  .farmer-card-body {
+    padding: 22px 20px;
+    gap: 18px;
+  }
+
+  .farmer-two-col {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .farmer-card-footer {
+    padding: 16px 20px;
+    flex-direction: column-reverse;
+    gap: 12px;
+  }
+
+  .btn-farmer-submit {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .farmer-footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .farmer-footer .footer-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+  }
+}
+

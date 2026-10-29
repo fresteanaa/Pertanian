@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daftar Sebagai Pembeli - PehTani</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #1e293b;
+      background-color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ─── Main Content ─── */
+    .buyer-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px 80px 20px;
+    }
+
+    /* ─── Header ─── */
+    .buyer-header {
+      text-align: center;
+      max-width: 580px;
+      margin-bottom: 36px;
+    }
+
+    .buyer-title {
+      font-size: 34px;
+      font-weight: 800;
+      color: #008468;
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    .buyer-subtitle {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #64748b;
+      margin: 0;
+      padding: 0 10px;
+    }
+
+    /* ─── Form Card ─── */
+    .buyer-card {
+      width: 100%;
+      max-width: 660px;
+      border: 1px solid #71717a;
+      border-radius: 4px;
+      background-color: #ffffff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    .buyer-card-body {
+      padding: 36px 32px 32px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    /* 2 Columns Layout */
+    .buyer-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .buyer-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .buyer-label {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .buyer-input {
+      width: 100%;
+      height: 42px;
+      padding: 8px 14px;
+      border: 1px solid #71717a;
+      border-radius: 3px;
+      font-size: 14.5px;
+      font-family: inherit;
+      color: #1e293b;
+      outline: none;
+      box-sizing: border-box;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .buyer-input:focus {
+      border-color: #008468;
+      box-shadow: 0 0 0 2px rgba(0, 132, 104, 0.15);
+    }
+
+    /* Phone Input Group with Indonesia Flag */
+    .phone-input-group {
+      display: flex;
+      align-items: stretch;
+      border: 1px solid #71717a;
+      border-radius: 3px;
+      background-color: #ffffff;
+      height: 42px;
+      box-sizing: border-box;
+      overflow: hidden;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .phone-input-group:focus-within {
+      border-color: #008468;
+      box-shadow: 0 0 0 2px rgba(0, 132, 104, 0.15);
+    }
+
+    .phone-prefix {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0 12px;
+      background-color: #ffffff;
+      border-right: 1px solid #71717a;
+      user-select: none;
+    }
+
+    .id-flag {
+      width: 20px;
+      height: 14px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #cbd5e1;
+      border-radius: 1px;
+      overflow: hidden;
+      box-shadow: 0 0.5px 1.5px rgba(0, 0, 0, 0.15);
+    }
+
+    .flag-red {
+      flex: 1;
+      background-color: #ef4444;
+    }
+
+    .flag-white {
+      flex: 1;
+      background-color: #ffffff;
+    }
+
+    .prefix-code {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: #334155;
+    }
+
+    .phone-field-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      padding: 8px 12px;
+      font-size: 14.5px;
+      font-family: inherit;
+      color: #1e293b;
+      background: transparent;
+      width: 100%;
+    }
+
+    /* Divider */
+    .buyer-card-divider {
+      width: 100%;
+      height: 1px;
+      background-color: #71717a;
+    }
+
+    /* Footer Action inside Card */
+    .buyer-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 32px;
+    }
+
+    .buyer-back-link {
+      font-size: 13.5px;
+      color: #64748b;
+      transition: color 0.15s;
+    }
+
+    .buyer-back-link:hover {
+      color: #008468;
+    }
+
+    .btn-buyer-submit {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 28px;
+      background-color: #008767;
+      color: #ffffff;
+      font-size: 14.5px;
+      font-weight: 600;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.18s ease, transform 0.12s ease;
+      font-family: inherit;
+      margin-left: auto;
+    }
+
+    .btn-buyer-submit:hover {
+      background-color: #007357;
+      transform: translateY(-1px);
+    }
+
+    /* ─── Footer Page ─── */
+    .buyer-footer {
+      background-color: #00745b;
+      padding: 18px 40px;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .buyer-footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1120px;
+      margin: 0 auto;
+      gap: 16px;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 13px;
+      transition: opacity 0.15s;
+    }
+
+    .footer-links a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 640px) {
+      .buyer-main {
+        padding: 36px 16px 48px 16px;
+      }
+      .buyer-title {
+        font-size: 26px;
+      }
+      .buyer-card-body {
+        padding: 22px 20px;
+      }
+      .buyer-two-col {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      .buyer-card-footer {
+        padding: 16px 20px;
+        flex-direction: column-reverse;
+        gap: 12px;
+      }
+      .btn-buyer-submit {
+        width: 100%;
+        margin-left: 0;
+      }
+      .buyer-footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Content -->
+  <main class="buyer-main">
+    <div class="buyer-header">
+      <h1 class="buyer-title">Daftar Sebagai Pembeli</h1>
+      <p class="buyer-subtitle">
+        Isi informasi berikut untuk membuat akun dan mulai terhubung langsung dengan petani lokal atau pelanggan.
+      </p>
+    </div>
+
+    <!-- Form Card -->
+    <div class="buyer-card">
+      <form id="buyerForm" onsubmit="handleBuyerSubmit(event)">
+        <div class="buyer-card-body">
+          <!-- 2 Kolom: Nama Pengguna & No HP -->
+          <div class="buyer-two-col">
+            <div class="buyer-field">
+              <label for="namaPengguna" class="buyer-label">Nama Pengguna :</label>
+              <input
+                type="text"
+                id="namaPengguna"
+                class="buyer-input"
+                required
+                autocomplete="username"
+              />
+            </div>
+
+            <div class="buyer-field">
+              <label for="noHp" class="buyer-label">No HP :</label>
+              <div class="phone-input-group">
+                <div class="phone-prefix" title="Indonesia (+62)">
+                  <span class="id-flag" aria-hidden="true">
+                    <span class="flag-red"></span>
+                    <span class="flag-white"></span>
+                  </span>
+                  <span class="prefix-code">(+62)</span>
+                </div>
+                <input
+                  type="tel"
+                  id="noHp"
+                  class="phone-field-input"
+                  placeholder="8123456789"
+                  required
+                  autocomplete="tel"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider Line -->
+        <div class="buyer-card-divider"></div>
+
+        <!-- Footer Card -->
+        <div class="buyer-card-footer">
+          <a href="daftar-preview.html" class="buyer-back-link">&larr; Ganti Role</a>
+          <button type="submit" class="btn-buyer-submit">
+            Lanjutkan Mendaftar &rarr;
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="buyer-footer">
+    <div class="buyer-footer-inner">
+      <span class="footer-copy">@2024, PEHTANI, Ramayuda Mahardika</span>
+      <div class="footer-links">
+        <a href="#kebijakan">Kebijakan Privasi</a>
+        <a href="#syarat">Syarat dan Ketentuan</a>
+        <a href="bantuan-preview.html">Bantuan &amp; Kontak</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function handleBuyerSubmit(e) {
+      e.preventDefault();
+      const nama = document.getElementById('namaPengguna').value.trim();
+      const hp = document.getElementById('noHp').value.trim();
+      if (!nama || !hp) {
+        alert('Nama Pengguna dan No HP wajib diisi!');
+        return;
+      }
+      sessionStorage.setItem('otp_phone', '+62' + hp);
+      window.location.href = 'otp-preview.html';
+    }
+  </script>
+</body>
+</html>
+

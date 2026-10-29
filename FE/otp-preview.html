@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verifikasi OTP - PehTani</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #1e293b;
+      background-color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ─── Main Content ─── */
+    .otp-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px 80px 20px;
+    }
+
+    .otp-container {
+      width: 100%;
+      max-width: 580px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    /* ─── Header ─── */
+    .otp-header {
+      margin-bottom: 36px;
+    }
+
+    .otp-title {
+      font-size: 34px;
+      font-weight: 800;
+      color: #008468;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+    }
+
+    .otp-subtitle {
+      font-size: 14.5px;
+      line-height: 1.6;
+      color: #64748b;
+      margin: 0;
+      max-width: 480px;
+    }
+
+    /* ─── Form & 5 Input Boxes ─── */
+    .otp-form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    .otp-inputs-row {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .otp-box {
+      width: 52px;
+      height: 52px;
+      border: 1px solid #71717a;
+      border-radius: 2px;
+      background-color: #ffffff;
+      font-size: 26px;
+      font-weight: 700;
+      text-align: center;
+      color: #1e293b;
+      outline: none;
+      box-sizing: border-box;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .otp-box:focus {
+      border-color: #008468;
+      box-shadow: 0 0 0 3px rgba(0, 132, 104, 0.18);
+    }
+
+    /* ─── Resend Link ─── */
+    .otp-resend-wrap {
+      font-size: 14px;
+      color: #64748b;
+      margin-bottom: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .btn-resend-link {
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: 14px;
+      font-weight: 700;
+      color: #008468;
+      cursor: pointer;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      font-family: inherit;
+    }
+
+    .btn-resend-link:hover {
+      color: #006852;
+    }
+
+    /* ─── Action Button ─── */
+    .btn-otp-verify {
+      width: 100%;
+      max-width: 260px;
+      height: 46px;
+      padding: 0 24px;
+      background-color: #008767;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.18s ease, transform 0.12s ease;
+      font-family: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn-otp-verify:hover {
+      background-color: #007357;
+      transform: translateY(-1px);
+    }
+
+    /* Success Alert Modal */
+    .toast-msg {
+      display: none;
+      padding: 12px 20px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .toast-msg.success {
+      display: block;
+      background: #ecfdf5;
+      color: #065f46;
+      border: 1px solid #6ee7b7;
+    }
+
+    .toast-msg.error {
+      display: block;
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fca5a5;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── Footer Page ─── */
+    .otp-footer {
+      background-color: #00745b;
+      padding: 18px 40px;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .otp-footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1120px;
+      margin: 0 auto;
+      gap: 16px;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 13px;
+      transition: opacity 0.15s;
+    }
+
+    .footer-links a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .otp-main {
+        padding: 40px 16px 50px 16px;
+      }
+      .otp-title {
+        font-size: 26px;
+      }
+      .otp-inputs-row {
+        gap: 10px;
+      }
+      .otp-box {
+        width: 44px;
+        height: 48px;
+        font-size: 22px;
+      }
+      .btn-otp-verify {
+        max-width: 100%;
+      }
+      .otp-footer-inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Content -->
+  <main class="otp-main">
+    <div class="otp-container">
+      <div class="otp-header">
+        <h1 class="otp-title">Masukkan Kode OTP</h1>
+        <p class="otp-subtitle" id="otpSubtitle">
+          Masukkan kode OTP yang telah dikirimkan ke email ra********@gmail.com
+        </p>
+      </div>
+
+      <div id="toast" class="toast-msg"></div>
+
+      <!-- 5 Digit Inputs -->
+      <form class="otp-form" onsubmit="handleVerify(event)">
+        <div class="otp-inputs-row" id="otpGroup">
+          <input type="text" class="otp-box" maxlength="1" inputmode="numeric" />
+          <input type="text" class="otp-box" maxlength="1" inputmode="numeric" />
+          <input type="text" class="otp-box" maxlength="1" inputmode="numeric" />
+          <input type="text" class="otp-box" maxlength="1" inputmode="numeric" />
+          <input type="text" class="otp-box" maxlength="1" inputmode="numeric" />
+        </div>
+
+        <!-- Resend Link -->
+        <div class="otp-resend-wrap">
+          <span>Tidak Mendapatkan OTP? </span>
+          <button type="button" id="btnResend" class="btn-resend-link" onclick="handleResend()">
+            Kirim Ulang OTP
+          </button>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn-otp-verify">
+          Verifikasi
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="otp-footer">
+    <div class="otp-footer-inner">
+      <span class="footer-copy">@2024, PEHTANI, Ramayuda Mahardika</span>
+      <div class="footer-links">
+        <a href="#kebijakan">Kebijakan Privasi</a>
+        <a href="#syarat">Syarat dan Ketentuan</a>
+        <a href="bantuan-preview.html">Bantuan &amp; Kontak</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const inputs = document.querySelectorAll('.otp-box');
+    const toast = document.getElementById('toast');
+
+    if (inputs.length > 0) inputs[0].focus();
+
+    inputs.forEach((input, index) => {
+      input.addEventListener('input', (e) => {
+        const val = e.target.value.replace(/\D/g, '');
+        e.target.value = val ? val[val.length - 1] : '';
+        if (e.target.value && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Backspace') {
+          if (!input.value && index > 0) {
+            inputs[index - 1].focus();
+          }
+        } else if (e.key === 'ArrowLeft' && index > 0) {
+          inputs[index - 1].focus();
+        } else if (e.key === 'ArrowRight' && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+
+      input.addEventListener('paste', (e) => {
+        e.preventDefault();
+        const text = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 5);
+        if (!text) return;
+        text.split('').forEach((char, i) => {
+          if (inputs[i]) inputs[i].value = char;
+        });
+        const targetFocus = Math.min(text.length, inputs.length - 1);
+        inputs[targetFocus].focus();
+      });
+    });
+
+    let countdown = 0;
+    function handleResend() {
+      if (countdown > 0) return;
+      showToast('Kode OTP baru telah dikirimkan ulang!', 'success');
+      countdown = 60;
+      const resendBtn = document.getElementById('btnResend');
+      resendBtn.style.pointerEvents = 'none';
+      resendBtn.style.opacity = '0.6';
+      
+      const interval = setInterval(() => {
+        countdown--;
+        if (countdown <= 0) {
+          clearInterval(interval);
+          resendBtn.textContent = 'Kirim Ulang OTP';
+          resendBtn.style.pointerEvents = 'auto';
+          resendBtn.style.opacity = '1';
+        } else {
+          resendBtn.textContent = `Kirim Ulang (${countdown}s)`;
+        }
+      }, 1000);
+    }
+
+    function showToast(msg, type) {
+      toast.className = 'toast-msg ' + type;
+      toast.textContent = msg;
+      setTimeout(() => {
+        if (type !== 'success') toast.className = 'toast-msg';
+      }, 3500);
+    }
+
+    function handleVerify(e) {
+      e.preventDefault();
+      let code = '';
+      inputs.forEach(input => code += input.value);
+
+      if (code.length < 5) {
+        showToast('Silakan masukkan 5 digit kode OTP dengan lengkap.', 'error');
+        return;
+      }
+
+      showToast('Verifikasi Berhasil! Mengalihkan ke halaman masuk...', 'success');
+      setTimeout(() => {
+        window.location.href = 'login-preview.html';
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
+

@@ -10,8 +10,11 @@ import FeatureCards from './components/FeatureCards';
 import Footer from './components/Footer';
 import LoginPage from './pages/LoginPage';
 import AboutPage from './pages/AboutPage';
-import HelpContactPage from './pages/HelpContactPage';
+import HelpContactPage from  './pages/HelpContactPage';
 import RegisterRolePage from './pages/RegisterRolePage';
+import RegisterFarmerPage from './pages/RegisterFarmerPage';
+import RegisterBuyerPage from './pages/RegisterBuyerPage';
+import OtpVerificationPage from './pages/OtpVerificationPage';
 
 // ─── Halaman Utama ─────────────────────────────────────────────────────────
 function HomePage() {
@@ -41,6 +44,15 @@ export default function App() {
 
         {/* Halaman Pilih Role Pendaftaran */}
         <Route path="/daftar" element={<RegisterRolePage />} />
+
+        {/* Halaman Pendaftaran Petani */}
+        <Route path="/daftar/petani" element={<RegisterFarmerPage />} />
+
+        {/* Halaman Pendaftaran Pembeli */}
+        <Route path="/daftar/pembeli" element={<RegisterBuyerPage />} />
+
+        {/* Halaman Verifikasi OTP */}
+        <Route path="/verifikasi-otp" element={<OtpVerificationPage />} />
 
         {/* Halaman Tentang */}
         <Route path="/tentang" element={<AboutPage />} />

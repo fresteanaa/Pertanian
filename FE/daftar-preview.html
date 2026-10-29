@@ -385,8 +385,13 @@
     }
 
     function continueRegister() {
-      const roleLabel = currentRole === 'petani' ? 'Petani' : 'Pembeli';
-      alert(`Lanjutkan ke formulir registrasi sebagai ${roleLabel}!`);
+      if (currentRole === 'petani') {
+        window.location.href = 'daftar-petani-preview.html';
+      } else if (currentRole === 'pembeli') {
+        window.location.href = 'daftar-pembeli-preview.html';
+      } else {
+        alert('Silakan pilih salah satu peran (Petani atau Pembeli) terlebih dahulu!');
+      }
     }
   </script>
 </body>

@@ -8,8 +8,12 @@ export default function RegisterRolePage() {
 
   const handleSelect = (role) => {
     setSelectedRole(role);
-    // Jika nanti ada form pendaftaran masing-masing:
-    // navigate(`/daftar/${role}`);
+  };
+
+  const handleContinue = () => {
+    if (selectedRole) {
+      navigate(`/daftar/${selectedRole}`);
+    }
   };
 
   return (
@@ -115,7 +119,7 @@ export default function RegisterRolePage() {
               <button
                 type="button"
                 className="btn-continue"
-                onClick={() => alert(`Lanjutkan registrasi sebagai ${selectedRole === 'petani' ? 'Petani' : 'Pembeli'}!`)}
+                onClick={handleContinue}
               >
                 Lanjutkan Pendaftaran &rarr;
               </button>
