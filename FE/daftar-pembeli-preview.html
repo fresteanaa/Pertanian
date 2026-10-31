@@ -1,3 +1,4 @@
+<!-- Standalone preview for Daftar Sebagai Pembeli -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -7,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+
   <style>
     * {
       margin: 0;
@@ -51,7 +52,7 @@
       font-weight: 800;
       color: #008468;
       letter-spacing: -0.5px;
-      margin-bottom: 12px;
+      margin: 0 0 12px 0;
     }
 
     .buyer-subtitle {
@@ -62,7 +63,7 @@
       padding: 0 10px;
     }
 
-    /* ─── Form Card ─── */
+    /* ─── Card Box ─── */
     .buyer-card {
       width: 100%;
       max-width: 660px;
@@ -79,6 +80,17 @@
       gap: 22px;
     }
 
+    /* Error Message */
+    .buyer-error-msg {
+      display: none;
+      background-color: #fef2f2;
+      border: 1px solid #fca5a5;
+      color: #dc2626;
+      font-size: 13.5px;
+      padding: 10px 14px;
+      border-radius: 4px;
+    }
+
     /* 2 Columns Layout */
     .buyer-two-col {
       display: grid;
@@ -87,6 +99,7 @@
       align-items: flex-start;
     }
 
+    /* Field Group */
     .buyer-field {
       display: flex;
       flex-direction: column;
@@ -99,6 +112,7 @@
       color: #1e293b;
     }
 
+    /* Standard Input */
     .buyer-input {
       width: 100%;
       height: 42px;
@@ -108,6 +122,7 @@
       font-size: 14.5px;
       font-family: inherit;
       color: #1e293b;
+      background-color: #ffffff;
       outline: none;
       box-sizing: border-box;
       transition: border-color 0.15s ease, box-shadow 0.15s ease;
@@ -118,7 +133,7 @@
       box-shadow: 0 0 0 2px rgba(0, 132, 104, 0.15);
     }
 
-    /* Phone Input Group with Indonesia Flag */
+    /* Phone Input Group with Flag */
     .phone-input-group {
       display: flex;
       align-items: stretch;
@@ -146,6 +161,7 @@
       user-select: none;
     }
 
+    /* Indonesian Flag */
     .id-flag {
       width: 20px;
       height: 14px;
@@ -185,14 +201,14 @@
       width: 100%;
     }
 
-    /* Divider */
+    /* Divider Line */
     .buyer-card-divider {
       width: 100%;
       height: 1px;
       background-color: #71717a;
     }
 
-    /* Footer Action inside Card */
+    /* Footer Section of Card */
     .buyer-card-footer {
       display: flex;
       align-items: center;
@@ -203,6 +219,7 @@
     .buyer-back-link {
       font-size: 13.5px;
       color: #64748b;
+      text-decoration: none;
       transition: color 0.15s;
     }
 
@@ -210,6 +227,7 @@
       color: #008468;
     }
 
+    /* Submit Button */
     .btn-buyer-submit {
       display: inline-flex;
       align-items: center;
@@ -232,7 +250,7 @@
       transform: translateY(-1px);
     }
 
-    /* ─── Footer Page ─── */
+    /* ─── Page Footer ─── */
     .buyer-footer {
       background-color: #00745b;
       padding: 18px 40px;
@@ -248,55 +266,64 @@
       gap: 16px;
     }
 
-    .footer-copy {
+    .buyer-footer .footer-copy {
       font-size: 13px;
     }
 
-    .footer-links {
+    .buyer-footer .footer-links {
       display: flex;
       gap: 24px;
     }
 
-    .footer-links a {
+    .buyer-footer .footer-links a {
       color: rgba(255, 255, 255, 0.9);
       font-size: 13px;
+      text-decoration: none;
       transition: opacity 0.15s;
     }
 
-    .footer-links a:hover {
+    .buyer-footer .footer-links a:hover {
       opacity: 0.8;
       text-decoration: underline;
     }
 
+    /* ─── Responsive ─── */
     @media (max-width: 640px) {
       .buyer-main {
         padding: 36px 16px 48px 16px;
       }
+
       .buyer-title {
         font-size: 26px;
       }
+
       .buyer-card-body {
         padding: 22px 20px;
       }
+
       .buyer-two-col {
         grid-template-columns: 1fr;
         gap: 18px;
       }
+
       .buyer-card-footer {
         padding: 16px 20px;
         flex-direction: column-reverse;
         gap: 12px;
       }
+
       .btn-buyer-submit {
         width: 100%;
         margin-left: 0;
       }
+
       .buyer-footer-inner {
         flex-direction: column;
         text-align: center;
         gap: 10px;
       }
-      .footer-links {
+
+      .buyer-footer .footer-links {
         flex-wrap: wrap;
         justify-content: center;
         gap: 14px;
@@ -315,10 +342,12 @@
       </p>
     </div>
 
-    <!-- Form Card -->
+    <!-- Card Form -->
     <div class="buyer-card">
       <form id="buyerForm" onsubmit="handleBuyerSubmit(event)">
         <div class="buyer-card-body">
+          <div id="errorMsg" class="buyer-error-msg"></div>
+
           <!-- 2 Kolom: Nama Pengguna & No HP -->
           <div class="buyer-two-col">
             <div class="buyer-field">
@@ -326,9 +355,11 @@
               <input
                 type="text"
                 id="namaPengguna"
+                name="namaPengguna"
                 class="buyer-input"
-                required
+                placeholder=""
                 autocomplete="username"
+                required
               />
             </div>
 
@@ -345,20 +376,19 @@
                 <input
                   type="tel"
                   id="noHp"
+                  name="noHp"
                   class="phone-field-input"
-                  placeholder="8123456789"
-                  required
+                  placeholder=""
                   autocomplete="tel"
+                  required
                 />
               </div>
             </div>
           </div>
         </div>
 
-        <!-- Divider Line -->
         <div class="buyer-card-divider"></div>
 
-        <!-- Footer Card -->
         <div class="buyer-card-footer">
           <a href="daftar-preview.html" class="buyer-back-link">&larr; Ganti Role</a>
           <button type="submit" class="btn-buyer-submit">
@@ -385,12 +415,22 @@
     function handleBuyerSubmit(e) {
       e.preventDefault();
       const nama = document.getElementById('namaPengguna').value.trim();
-      const hp = document.getElementById('noHp').value.trim();
-      if (!nama || !hp) {
-        alert('Nama Pengguna dan No HP wajib diisi!');
+      const noHp = document.getElementById('noHp').value.trim();
+      const errorMsg = document.getElementById('errorMsg');
+
+      if (!nama || !noHp) {
+        errorMsg.textContent = 'Nama Pengguna dan No HP wajib diisi.';
+        errorMsg.style.display = 'block';
         return;
       }
-      sessionStorage.setItem('otp_phone', '+62' + hp);
+
+      sessionStorage.setItem('pending_registration', JSON.stringify({
+        role: 'pembeli',
+        namaPengguna: nama,
+        noHp: '+62' + noHp,
+        email: 'ra********@gmail.com'
+      }));
+
       window.location.href = 'otp-preview.html';
     }
   </script>

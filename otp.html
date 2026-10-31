@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+
   <style>
     * {
       margin: 0;
@@ -58,7 +58,7 @@
       font-weight: 800;
       color: #008468;
       letter-spacing: -0.5px;
-      margin-bottom: 14px;
+      margin: 0 0 14px 0;
     }
 
     .otp-subtitle {
@@ -69,7 +69,30 @@
       max-width: 480px;
     }
 
-    /* ─── Form & 5 Input Boxes ─── */
+    /* ─── Feedback Alerts ─── */
+    .otp-alert {
+      display: none;
+      width: 100%;
+      max-width: 380px;
+      padding: 10px 16px;
+      font-size: 13.5px;
+      border-radius: 4px;
+      margin-bottom: 20px;
+    }
+
+    .otp-alert-error {
+      background-color: #fef2f2;
+      border: 1px solid #fca5a5;
+      color: #dc2626;
+    }
+
+    .otp-alert-success {
+      background-color: #ecfdf5;
+      border: 1px solid #6ee7b7;
+      color: #065f46;
+    }
+
+    /* ─── Form & Inputs ─── */
     .otp-form {
       display: flex;
       flex-direction: column;
@@ -84,6 +107,7 @@
       margin-bottom: 24px;
     }
 
+    /* 5 Square Boxes matching Design */
     .otp-box {
       width: 52px;
       height: 52px;
@@ -115,6 +139,11 @@
       gap: 6px;
     }
 
+    .otp-timer {
+      color: #94a3b8;
+      font-weight: 500;
+    }
+
     .btn-resend-link {
       background: none;
       border: none;
@@ -125,14 +154,26 @@
       cursor: pointer;
       text-decoration: underline;
       text-underline-offset: 3px;
+      transition: color 0.15s ease;
       font-family: inherit;
     }
 
-    .btn-resend-link:hover {
+    .btn-resend-link:hover:not(:disabled) {
       color: #006852;
     }
 
+    .btn-resend-link:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
     /* ─── Action Button ─── */
+    .otp-action-wrap {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
     .btn-otp-verify {
       width: 100%;
       max-width: 260px;
@@ -157,37 +198,7 @@
       transform: translateY(-1px);
     }
 
-    /* Success Alert Modal */
-    .toast-msg {
-      display: none;
-      padding: 12px 20px;
-      margin-bottom: 20px;
-      border-radius: 6px;
-      font-size: 14px;
-      font-weight: 600;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .toast-msg.success {
-      display: block;
-      background: #ecfdf5;
-      color: #065f46;
-      border: 1px solid #6ee7b7;
-    }
-
-    .toast-msg.error {
-      display: block;
-      background: #fef2f2;
-      color: #dc2626;
-      border: 1px solid #fca5a5;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ─── Footer Page ─── */
+    /* ─── Page Footer ─── */
     .otp-footer {
       background-color: #00745b;
       padding: 18px 40px;
@@ -203,50 +214,63 @@
       gap: 16px;
     }
 
-    .footer-copy {
+    .otp-footer .footer-copy {
       font-size: 13px;
     }
 
-    .footer-links {
+    .otp-footer .footer-links {
       display: flex;
       gap: 24px;
     }
 
-    .footer-links a {
+    .otp-footer .footer-links a {
       color: rgba(255, 255, 255, 0.9);
       font-size: 13px;
+      text-decoration: none;
       transition: opacity 0.15s;
     }
 
-    .footer-links a:hover {
+    .otp-footer .footer-links a:hover {
       opacity: 0.8;
       text-decoration: underline;
     }
 
+    /* ─── Responsive ─── */
     @media (max-width: 600px) {
       .otp-main {
         padding: 40px 16px 50px 16px;
       }
+
       .otp-title {
         font-size: 26px;
       }
+
       .otp-inputs-row {
         gap: 10px;
       }
+
       .otp-box {
         width: 44px;
         height: 48px;
         font-size: 22px;
       }
+
+      .otp-resend-wrap {
+        flex-direction: column;
+        gap: 4px;
+      }
+
       .btn-otp-verify {
         max-width: 100%;
       }
+
       .otp-footer-inner {
         flex-direction: column;
         text-align: center;
         gap: 10px;
       }
-      .footer-links {
+
+      .otp-footer .footer-links {
         flex-wrap: wrap;
         justify-content: center;
         gap: 14px;
@@ -266,30 +290,32 @@
         </p>
       </div>
 
-      <div id="toast" class="toast-msg"></div>
+      <!-- Alerts -->
+      <div id="otpAlertError" class="otp-alert otp-alert-error"></div>
+      <div id="otpAlertSuccess" class="otp-alert otp-alert-success"></div>
 
-      <!-- 5 Digit Inputs -->
-      <form class="otp-form" onsubmit="handleVerify(event)">
-        <div class="otp-inputs-row" id="otpGroup">
-          <input type="text" class="otp-box" maxlength="1" inputmode="numeric" />
-          <input type="text" class="otp-box" maxlength="1" inputmode="numeric" />
-          <input type="text" class="otp-box" maxlength="1" inputmode="numeric" />
-          <input type="text" class="otp-box" maxlength="1" inputmode="numeric" />
-          <input type="text" class="otp-box" maxlength="1" inputmode="numeric" />
+      <!-- 5 Input Boxes -->
+      <form class="otp-form" id="otpForm" onsubmit="handleOtpSubmit(event)">
+        <div class="otp-inputs-row" id="otpBoxes">
+          <input type="text" inputmode="numeric" maxlength="1" class="otp-box" aria-label="Digit 1" autocomplete="off" />
+          <input type="text" inputmode="numeric" maxlength="1" class="otp-box" aria-label="Digit 2" autocomplete="off" />
+          <input type="text" inputmode="numeric" maxlength="1" class="otp-box" aria-label="Digit 3" autocomplete="off" />
+          <input type="text" inputmode="numeric" maxlength="1" class="otp-box" aria-label="Digit 4" autocomplete="off" />
+          <input type="text" inputmode="numeric" maxlength="1" class="otp-box" aria-label="Digit 5" autocomplete="off" />
         </div>
 
         <!-- Resend Link -->
         <div class="otp-resend-wrap">
           <span>Tidak Mendapatkan OTP? </span>
-          <button type="button" id="btnResend" class="btn-resend-link" onclick="handleResend()">
-            Kirim Ulang OTP
-          </button>
+          <span id="resendContainer">
+            <button type="button" class="btn-resend-link" id="btnResend" onclick="handleResendOtp()">Kirim Ulang OTP</button>
+          </span>
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="btn-otp-verify">
-          Verifikasi
-        </button>
+        <div class="otp-action-wrap">
+          <button type="submit" class="btn-otp-verify">Verifikasi</button>
+        </div>
       </form>
     </div>
   </main>
@@ -307,90 +333,118 @@
   </footer>
 
   <script>
-    const inputs = document.querySelectorAll('.otp-box');
-    const toast = document.getElementById('toast');
+    // Ambil info pendaftaran pending jika ada
+    const pendingData = sessionStorage.getItem('pending_registration');
+    if (pendingData) {
+      try {
+        const parsed = JSON.parse(pendingData);
+        if (parsed.email) {
+          document.getElementById('otpSubtitle').textContent = 
+            `Masukkan kode OTP yang telah dikirimkan ke email ${parsed.email}`;
+        }
+      } catch (e) {}
+    }
 
-    // Auto focus ke box pertama
-    if (inputs.length > 0) inputs[0].focus();
+    const boxes = document.querySelectorAll('.otp-box');
 
-    // Setup input box keyboard & typing handler
-    inputs.forEach((input, index) => {
-      input.addEventListener('input', (e) => {
+    // Auto-focus input pertama
+    if (boxes[0]) boxes[0].focus();
+
+    // Setup input interactions
+    boxes.forEach((box, idx) => {
+      box.addEventListener('input', (e) => {
         const val = e.target.value.replace(/\D/g, '');
-        e.target.value = val ? val[val.length - 1] : '';
-        if (e.target.value && index < inputs.length - 1) {
-          inputs[index + 1].focus();
+        e.target.value = val ? val.slice(-1) : '';
+
+        hideAlerts();
+
+        if (e.target.value && idx < boxes.length - 1) {
+          boxes[idx + 1].focus();
         }
       });
 
-      input.addEventListener('keydown', (e) => {
+      box.addEventListener('keydown', (e) => {
         if (e.key === 'Backspace') {
-          if (!input.value && index > 0) {
-            inputs[index - 1].focus();
+          if (!box.value && idx > 0) {
+            boxes[idx - 1].focus();
           }
-        } else if (e.key === 'ArrowLeft' && index > 0) {
-          inputs[index - 1].focus();
-        } else if (e.key === 'ArrowRight' && index < inputs.length - 1) {
-          inputs[index + 1].focus();
+        } else if (e.key === 'ArrowLeft' && idx > 0) {
+          boxes[idx - 1].focus();
+        } else if (e.key === 'ArrowRight' && idx < boxes.length - 1) {
+          boxes[idx + 1].focus();
         }
       });
 
-      input.addEventListener('paste', (e) => {
+      box.addEventListener('paste', (e) => {
         e.preventDefault();
-        const text = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 5);
-        if (!text) return;
-        text.split('').forEach((char, i) => {
-          if (inputs[i]) inputs[i].value = char;
+        const paste = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 5);
+        if (!paste) return;
+
+        paste.split('').forEach((char, i) => {
+          if (boxes[i]) boxes[i].value = char;
         });
-        const targetFocus = Math.min(text.length, inputs.length - 1);
-        inputs[targetFocus].focus();
+
+        const nextIdx = Math.min(paste.length, boxes.length - 1);
+        boxes[nextIdx].focus();
       });
     });
 
-    let countdown = 0;
-    function handleResend() {
-      if (countdown > 0) return;
-      showToast('Kode OTP baru telah dikirimkan ulang!', 'success');
-      countdown = 60;
-      const resendBtn = document.getElementById('btnResend');
-      resendBtn.style.pointerEvents = 'none';
-      resendBtn.style.opacity = '0.6';
+    function hideAlerts() {
+      document.getElementById('otpAlertError').style.display = 'none';
+      document.getElementById('otpAlertSuccess').style.display = 'none';
+    }
+
+    function handleOtpSubmit(e) {
+      e.preventDefault();
+      let otpCode = '';
+      boxes.forEach(b => otpCode += b.value);
+
+      const errAlert = document.getElementById('otpAlertError');
+      const succAlert = document.getElementById('otpAlertSuccess');
+
+      if (otpCode.length < 5) {
+        errAlert.textContent = 'Silakan masukkan 5 digit kode OTP dengan lengkap.';
+        errAlert.style.display = 'block';
+        succAlert.style.display = 'none';
+        return;
+      }
+
+      errAlert.style.display = 'none';
+      succAlert.textContent = 'Verifikasi Berhasil! Mengalihkan ke halaman masuk...';
+      succAlert.style.display = 'block';
+
+      setTimeout(() => {
+        window.location.href = 'login.html';
+      }, 1500);
+    }
+
+    // Timer resend
+    let countdown = 60;
+    let timerInterval = null;
+
+    function startTimer() {
+      const container = document.getElementById('resendContainer');
+      container.innerHTML = `<span class="otp-timer">Kirim Ulang (${countdown}s)</span>`;
       
-      const interval = setInterval(() => {
+      clearInterval(timerInterval);
+      timerInterval = setInterval(() => {
         countdown--;
         if (countdown <= 0) {
-          clearInterval(interval);
-          resendBtn.textContent = 'Kirim Ulang OTP';
-          resendBtn.style.pointerEvents = 'auto';
-          resendBtn.style.opacity = '1';
+          clearInterval(timerInterval);
+          container.innerHTML = `<button type="button" class="btn-resend-link" onclick="handleResendOtp()">Kirim Ulang OTP</button>`;
+          countdown = 60;
         } else {
-          resendBtn.textContent = `Kirim Ulang (${countdown}s)`;
+          container.innerHTML = `<span class="otp-timer">Kirim Ulang (${countdown}s)</span>`;
         }
       }, 1000);
     }
 
-    function showToast(msg, type) {
-      toast.className = 'toast-msg ' + type;
-      toast.textContent = msg;
-      setTimeout(() => {
-        if (type !== 'success') toast.className = 'toast-msg';
-      }, 3500);
-    }
-
-    function handleVerify(e) {
-      e.preventDefault();
-      let code = '';
-      inputs.forEach(input => code += input.value);
-
-      if (code.length < 5) {
-        showToast('Silakan masukkan 5 digit kode OTP dengan lengkap.', 'error');
-        return;
-      }
-
-      showToast('Verifikasi Berhasil! Mengalihkan ke halaman masuk...', 'success');
-      setTimeout(() => {
-        window.location.href = 'login.html';
-      }, 1500);
+    function handleResendOtp() {
+      const succAlert = document.getElementById('otpAlertSuccess');
+      succAlert.textContent = 'Kode OTP baru telah dikirimkan ke email Anda!';
+      succAlert.style.display = 'block';
+      setTimeout(() => succAlert.style.display = 'none', 3500);
+      startTimer();
     }
   </script>
 </body>
