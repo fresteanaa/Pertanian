@@ -9,9 +9,9 @@ export default function Footer() {
           @2024, PEHTANI, Ramayuda Mahardika
         </div>
         <div className="footer-links">
-          <a href="#kebijakan">Kebijakan Privasi</a>
-          <a href="#syarat">Syarat dan Ketentuan</a>
-          <a href="#bantuan">Bantuan &amp; Kontak</a>
+          <a href="/kebijakan-privasi">Kebijakan Privasi</a>
+          <a href="/syarat-ketentuan">Syarat dan Ketentuan</a>
+          <a href="/bantuan">Bantuan &amp; Kontak</a>
         </div>
       </div>
     </footer>
