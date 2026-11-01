@@ -4,13 +4,13 @@ Platform marketplace pertanian yang menghubungkan petani langsung dengan pembeli
 
 ---
 
-## 📁 Struktur Direktori Proyek
+## Struktur Direktori Proyek
 
 Proyek ini telah distrukturisasi dengan rapi dan terpisah jelas antara **Frontend (FE)** dan **Backend (BE)**:
 
 ```text
 Pertanian/
-├── FE/                              # 💻 FRONTEND (React.js + Vite)
+├── FE/                              # FRONTEND (React.js + Vite)
 │   ├── src/                         # Source code aplikasi React
 │   │   ├── components/              # Komponen UI (Navbar, Hero, Footer, dll.)
 │   │   ├── pages/                   # Halaman aplikasi:
@@ -24,7 +24,7 @@ Pertanian/
 │   │   ├── App.jsx                  # Konfigurasi Routing (React Router)
 │   │   ├── main.jsx                 # Entry point React
 │   │   └── index.css                # Global stylesheet
-│   ├── previews/                    # 🌐 File HTML/CSS Preview Mandiri (Langsung Double-Click)
+│   ├── previews/                    # File HTML/CSS Preview Mandiri (Langsung Double-Click)
 │   │   ├── index.html               # Preview Landing Page
 │   │   ├── login.html               # Preview Halaman Masuk
 │   │   ├── daftar.html              # Preview Pilih Role
@@ -39,7 +39,7 @@ Pertanian/
 │   ├── package.json                 # Dependency React & Script NPM
 │   └── vite.config.js               # Konfigurasi Vite
 │
-├── backend/                         # ⚙️ BACKEND (NestJS API)
+├── backend/                         # BACKEND (NestJS API)
 │   ├── src/                         # Source code NestJS
 │   │   ├── auth/                    # Modul Autentikasi (Login, Register, JWT)
 │   │   │   ├── auth.controller.ts
@@ -60,7 +60,6 @@ Pertanian/
 
 ---
 
-## 🚀 Cara Menjalankan
 
 ### 1. Menjalankan Frontend (React.js)
 ```bash
@@ -82,7 +81,7 @@ Akses server di: `http://localhost:3000`
 
 ---
 
-## 🎨 Referensi Desain
+## Referensi Desain
 Desain UI mengacu pada mockup Figma: **Pemasaran Pertanian - Ramayuda Mahardika**
 
 ---
