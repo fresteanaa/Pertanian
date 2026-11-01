@@ -6,83 +6,112 @@ Platform marketplace pertanian yang menghubungkan petani langsung dengan pembeli
 
 ## Struktur Direktori Proyek
 
-Proyek ini telah distrukturisasi dengan rapi dan terpisah jelas antara **Frontend (FE)** dan **Backend (BE)**:
+Proyek ini menggunakan arsitektur terpisah antara **Frontend (FE - React.js + Vite)** dan **Backend (BE - Next.js App Router API)**.
 
 ```text
 Pertanian/
 ├── FE/                              # FRONTEND (React.js + Vite)
 │   ├── src/                         # Source code aplikasi React
-│   │   ├── components/              # Komponen UI (Navbar, Hero, Footer, dll.)
-│   │   ├── pages/                   # Halaman aplikasi:
-│   │   │   ├── LoginPage.jsx        # Halaman Masuk Akun
-│   │   │   ├── RegisterRolePage.jsx # Halaman Pilih Role (Petani / Pembeli)
-│   │   │   ├── RegisterFarmerPage.jsx# Form Daftar Petani
-│   │   │   ├── RegisterBuyerPage.jsx # Form Daftar Pembeli
-│   │   │   ├── OtpVerificationPage.jsx# Halaman Verifikasi OTP
-│   │   │   ├── AboutPage.jsx        # Halaman Tentang Kami
-│   │   │   └── HelpContactPage.jsx  # Halaman Bantuan & Kontak
-│   │   ├── App.jsx                  # Konfigurasi Routing (React Router)
+│   │   ├── components/              # Komponen UI
+│   │   ├── pages/                   # Halaman aplikasi
+│   │   │   ├── LoginPage.jsx
+│   │   │   ├── RegisterRolePage.jsx
+│   │   │   ├── RegisterFarmerPage.jsx
+│   │   │   ├── RegisterBuyerPage.jsx
+│   │   │   ├── OtpVerificationPage.jsx
+│   │   │   ├── AboutPage.jsx
+│   │   │   ├── HelpContactPage.jsx
+│   │   │   ├── PrivacyPolicyPage.jsx
+│   │   │   └── TermsPage.jsx
+│   │   ├── App.jsx                  # Routing React Router
 │   │   ├── main.jsx                 # Entry point React
 │   │   └── index.css                # Global stylesheet
-│   ├── previews/                    # File HTML/CSS Preview Mandiri (Langsung Double-Click)
-│   │   ├── index.html               # Preview Landing Page
-│   │   ├── login.html               # Preview Halaman Masuk
-│   │   ├── daftar.html              # Preview Pilih Role
-│   │   ├── daftar-petani.html       # Preview Form Petani
-│   │   ├── daftar-pembeli.html      # Preview Form Pembeli
-│   │   ├── otp.html                 # Preview Verifikasi OTP
-│   │   ├── tentang.html             # Preview Tentang
-│   │   ├── bantuan.html             # Preview Bantuan
-│   │   ├── style.css                # Styling untuk mockup preview
-│   │   └── script.js                # Interaktivitas mockup
-│   ├── index.html                   # Entry template Vite
-│   ├── package.json                 # Dependency React & Script NPM
-│   └── vite.config.js               # Konfigurasi Vite
-│
-├── backend/                         # BACKEND (NestJS API)
-│   ├── src/                         # Source code NestJS
-│   │   ├── auth/                    # Modul Autentikasi (Login, Register, JWT)
-│   │   │   ├── auth.controller.ts
-│   │   │   ├── auth.service.ts
-│   │   │   └── auth.module.ts
-│   │   ├── products/                # Modul Produk Pertanian
-│   │   │   ├── products.controller.ts
-│   │   │   ├── products.service.ts
-│   │   │   └── products.module.ts
-│   │   ├── app.module.ts            # Root module NestJS
-│   │   └── main.ts                  # Entry point Server Backend
-│   ├── nest-cli.json
+│   ├── previews/                    # Preview HTML/CSS
+│   │   ├── index.html
+│   │   ├── login.html
+│   │   ├── daftar.html
+│   │   ├── daftar-petani.html
+│   │   ├── daftar-pembeli.html
+│   │   ├── otp.html
+│   │   ├── tentang.html
+│   │   ├── bantuan.html
+│   │   ├── kebijakan-privasi.html
+│   │   ├── syarat-ketentuan.html
+│   │   ├── style.css
+│   │   └── script.js
+│   ├── index.html
 │   ├── package.json
-│   └── tsconfig.json
+│   └── vite.config.js
 │
-└── README.md                        # Dokumentasi Proyek
+├── backend/                         # BACKEND (Next.js API)
+│   ├── app/                         # Next.js App Router
+│   │   ├── layout.js                # Root Layout
+│   │   ├── page.js                  # Dashboard API
+│   │   └── api/                     # REST API
+│   │       ├── auth/
+│   │       │   ├── login/route.js
+│   │       │   ├── register/route.js
+│   │       │   └── verify-otp/route.js
+│   │       ├── products/route.js
+│   │       └── content/
+│   │           ├── privacy-policy/route.js
+│   │           └── terms-conditions/route.js
+│   ├── next.config.mjs              # Konfigurasi Next.js
+│   ├── package.json
+│   └── README.md
+│
+└── README.md                        # Dokumentasi proyek
 ```
 
 ---
 
+## 1. Menjalankan Frontend (React.js)
 
-### 1. Menjalankan Frontend (React.js)
 ```bash
 cd FE
 npm install
 npm run dev
 ```
-Akses di browser: `http://localhost:5173`
 
-> **Tips Preview Cepat:** Kamu juga dapat membuka langsung file-file di folder `FE/previews/` (seperti `FE/previews/index.html` atau `FE/previews/daftar.html`) di browser dengan klik dua kali tanpa perlu menjalankan terminal.
+Akses frontend melalui:
 
-### 2. Menjalankan Backend (NestJS)
+http://localhost:5173
+
+**Tips Preview Cepat:** File HTML di folder `FE/previews/` dapat dibuka langsung melalui browser tanpa menjalankan server development.
+
+---
+
+## 2. Menjalankan Backend (Next.js)
+
 ```bash
 cd backend
 npm install
-npm run start:dev
+npm run dev
 ```
-Akses server di: `http://localhost:3000`
+
+Akses backend melalui port yang dikonfigurasi pada proyek.
+
+Jika menggunakan port 5000:
+
+http://localhost:5000
+
+### Endpoint Backend
+
+| Method | Endpoint | Keterangan |
+|---|---|---|
+| POST | `/api/auth/login` | Login pengguna |
+| POST | `/api/auth/register` | Registrasi pengguna |
+| POST | `/api/auth/verify-otp` | Verifikasi OTP |
+| GET, POST | `/api/products` | Pengelolaan produk |
+| GET | `/api/content/privacy-policy` | Kebijakan privasi |
+| GET | `/api/content/terms-conditions` | Syarat dan ketentuan |
 
 ---
 
 ## Referensi Desain
-Desain UI mengacu pada mockup Figma: **Pemasaran Pertanian - Ramayuda Mahardika**
+
+Desain UI mengacu pada mockup Figma **Pemasaran Pertanian - Ramayuda Mahardika**.
 
 ---
-*©2026 PehTani - Platform Pertanian Nusantara*
+
+© 2026 PehTani - Platform Pertanian Nusantara

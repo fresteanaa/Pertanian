@@ -1,71 +1,71 @@
-# 🌾 PehTani Backend API Guide
+# ⚙️ PehTani - Backend API (Next.js)
 
-Panduan backend untuk platform **PehTani**. Di dunia pengembangan web modern berbasis JavaScript/TypeScript, ada 2 framework populer yang namanya mirip namun fungsinya berbeda: **NestJS** dan **Next.js**.
+Backend API untuk platform PehTani dibangun menggunakan **Next.js App Router (Route Handlers)**. Arsitektur ini sangat ramah pemula, cepat, dan mudah di-maintain.
 
 ---
 
-## Perbedaan Utama: NestJS vs Next.js
+## 📁 Struktur Direktori Backend
 
-| Fitur |  NextJS (Yang ada di folder ini) |  Next.js |
+```text
+backend/
+├── app/
+│   ├── layout.js                     # Root layout Next.js
+│   ├── page.js                       # Dashboard info API & status
+│   └── api/                          # Route Handlers API Next.js
+│       ├── auth/
+│       │   ├── login/
+│       │   │   └── route.js          # POST /api/auth/login
+│       │   ├── register/
+│       │   │   └── route.js          # POST /api/auth/register
+│       │   └── verify-otp/
+│       │       └── route.js          # POST /api/auth/verify-otp
+│       ├── products/
+│       │   └── route.js              # GET & POST /api/products
+│       └── content/
+│           ├── privacy-policy/
+│           │   └── route.js          # GET /api/content/privacy-policy
+│           └── terms-conditions/
+│               └── route.js          # GET /api/content/terms-conditions
+├── next.config.mjs                   # Konfigurasi Next.js (CORS support)
+├── package.json                      # Dependency Next.js & React
+└── README.md
+```
+
+---
+
+## 🚀 Cara Menjalankan Backend
+
+1. Buka terminal dan masuk ke folder `backend`:
+   ```bash
+   cd backend
+   ```
+2. Pasang dependensi:
+   ```bash
+   npm install
+   ```
+3. Jalankan server development:
+   ```bash
+   npm run dev
+   ```
+4. Server backend akan berjalan di:
+   ```text
+   http://localhost:5000
+   ```
+   Buka URL di atas di browser untuk melihat dashboard daftar endpoint API!
+
+---
+
+## 📡 Daftar Endpoint API
+
+| Method | Endpoint | Keterangan |
 | :--- | :--- | :--- |
-| **Kategori** | Backend Framework murni (Server-side API) | Fullstack React Framework (Frontend + API Routes) |
-| **Fokus Utama** | REST API, GraphQL, Microservices, WebSocket | Server-Side Rendering (SSR), Static Site (SSG), UI React + Route Handlers |
-| **Arsitektur** | Controller, Service, Module, Dependency Injection (seperti Spring Boot / Angular) | File-based routing (`app/api/.../route.ts`) |
-| **Bahasa** | TypeScript secara default | JavaScript / TypeScript |
-| **Kapan Dipakai?** | Saat frontend & backend dipisah (misal: FE pakai React Vite terpisah, BE pakai NestJS) | Saat ingin frontend React dan backend API dalam 1 project Next.js |
+| **POST** | `/api/auth/login` | Login akun Petani / Pembeli |
+| **POST** | `/api/auth/register` | Pendaftaran akun baru |
+| **POST** | `/api/auth/verify-otp` | Verifikasi 5 digit kode OTP |
+| **GET** | `/api/products` | Ambil data semua produk pertanian |
+| **POST** | `/api/products` | Tambah produk pertanian baru |
+| **GET** | `/api/content/privacy-policy` | Ambil data Kebijakan Privasi |
+| **GET** | `/api/content/terms-conditions` | Ambil data Syarat dan Ketentuan |
 
 ---
-
-## 1️⃣ Arsitektur NestJS (Backend Saat Ini)
-
-Folder `backend/` ini menggunakan **NestJS**. Alur kerjanya terbagi menjadi 3 lapis utama:
-
-1. **`main.ts`** -> Pintu masuk server (menjalankan server pada port 3000 dan mengaktifkan CORS untuk React Frontend).
-2. **`app.module.ts`** -> Modul pusat yang menyatukan semua fitur.
-3. **`products/products.controller.ts`** -> Menangani HTTP Request (`GET /products` atau `GET /products/:id`) dari frontend.
-4. **`products/products.service.ts`** -> Berisi logika bisnis dan data (mengambil data produk, filtering, database query).
-5. **`products/products.module.ts`** -> Mendaftarkan controller dan service produk.
-
-### Cara Menjalankan NestJS:
-```bash
-npm install
-npm run start:dev
-```
-Server akan aktif di `http://localhost:3000/products`.
-
----
-
-## 2️⃣ Jika Menggunakan Next.js sebagai Backend (API Route)
-
-Jika Anda ingin menggunakan **Next.js** untuk backend (Route Handler di Next.js App Router), polanya berbasis file (File-based Routing):
-
-Struktur folder Next.js API:
-```
-app/
-└── api/
-    └── products/
-        └── route.ts   # Endpoint: http://localhost:3000/api/products
-```
-
-Contoh kode `app/api/products/route.ts`:
-```ts
-import { NextResponse } from 'next/server';
-
-const products = [
-  {
-    id: 1,
-    name: 'Tomat Merah Segar',
-    category: 'Sayuran',
-    price: 'Rp12.000',
-    unit: '/ Kg',
-    location: 'Lembang, Jawa Barat',
-    sold: 'Terjual 226 kg',
-    image: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=600&q=80',
-  },
-];
-
-export async function GET() {
-  return NextResponse.json(products);
-}
-```
-
+*©2026 PehTani Platform - Backend API Next.js*
