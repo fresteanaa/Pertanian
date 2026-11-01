@@ -38,9 +38,9 @@ export default function AboutPage() {
           {/* Nav links */}
           <nav className="about-subnav-links">
             <a href="/tentang" className="subnav-item active">Tentang</a>
-            <a href="#bantuan" className="subnav-item">Bantuan &amp; Kontak</a>
-            <a href="#kebijakan" className="subnav-item">Kebijakan Privasi</a>
-            <a href="#syarat" className="subnav-item">Syarat dan Ketentuan</a>
+            <a href="/bantuan" className="subnav-item">Bantuan &amp; Kontak</a>
+            <a href="/kebijakan-privasi" className="subnav-item">Kebijakan Privasi</a>
+            <a href="/syarat-ketentuan" className="subnav-item">Syarat dan Ketentuan</a>
           </nav>
         </div>
       </div>
@@ -104,9 +104,9 @@ export default function AboutPage() {
         <div className="container about-footer-inner">
           <span className="footer-copy">@2024, PEHTANI, Ramayuda Mahardika</span>
           <div className="footer-links">
-            <a href="#kebijakan">Kebijakan Privasi</a>
-            <a href="#syarat">Syarat dan Ketentuan</a>
-            <a href="#bantuan">Bantuan &amp; Kontak</a>
+            <a href="/kebijakan-privasi">Kebijakan Privasi</a>
+            <a href="/syarat-ketentuan">Syarat dan Ketentuan</a>
+            <a href="/bantuan">Bantuan &amp; Kontak</a>
           </div>
         </div>
       </footer>

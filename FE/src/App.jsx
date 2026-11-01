@@ -10,11 +10,13 @@ import FeatureCards from './components/FeatureCards';
 import Footer from './components/Footer';
 import LoginPage from './pages/LoginPage';
 import AboutPage from './pages/AboutPage';
-import HelpContactPage from  './pages/HelpContactPage';
+import HelpContactPage from './pages/HelpContactPage';
 import RegisterRolePage from './pages/RegisterRolePage';
 import RegisterFarmerPage from './pages/RegisterFarmerPage';
 import RegisterBuyerPage from './pages/RegisterBuyerPage';
 import OtpVerificationPage from './pages/OtpVerificationPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsPage from './pages/TermsPage';
 
 // ─── Halaman Utama ─────────────────────────────────────────────────────────
 function HomePage() {
@@ -59,6 +61,12 @@ export default function App() {
 
         {/* Halaman Bantuan & Kontak */}
         <Route path="/bantuan" element={<HelpContactPage />} />
+
+        {/* Halaman Kebijakan Privasi */}
+        <Route path="/kebijakan-privasi" element={<PrivacyPolicyPage />} />
+
+        {/* Halaman Syarat dan Ketentuan */}
+        <Route path="/syarat-ketentuan" element={<TermsPage />} />
       </Routes>
     </BrowserRouter>
   );
