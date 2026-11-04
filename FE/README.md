@@ -32,7 +32,7 @@ FE/
 Buka file `preview.html` langsung dengan cara double-click atau buka via browser (Chrome / Edge / Firefox).
 
 ### Cara 2: Menjalankan dengan Node & Vite
-1. Buka terminal di folder `FE`:
+1. terminal di folder `FE`:
    ```bash
    cd FE
    ```
