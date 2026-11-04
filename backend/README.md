@@ -1,10 +1,10 @@
-# ⚙️ PehTani - Backend API (Next.js)
+#  PehTani - Backend API (Next.js)
 
-Backend API untuk platform PehTani dibangun menggunakan **Next.js App Router (Route Handlers)**. Arsitektur ini sangat ramah pemula, cepat, dan mudah di-maintain.
+Backend API untuk platform PehTani dibangun menggunakan **Next.js App Router (Route Handlers)**. 
 
 ---
 
-## 📁 Struktur Direktori Backend
+## Struktur Direktori Backend
 
 ```text
 backend/
@@ -33,7 +33,7 @@ backend/
 
 ---
 
-## 🚀 Cara Menjalankan Backend
+## Cara Menjalankan Backend
 
 1. Buka terminal dan masuk ke folder `backend`:
    ```bash
@@ -50,12 +50,11 @@ backend/
 4. Server backend akan berjalan di:
    ```text
    http://localhost:5000
-   ```
-   Buka URL di atas di browser untuk melihat dashboard daftar endpoint API!
+   ``
 
 ---
 
-## 📡 Daftar Endpoint API
+## Daftar Endpoint API
 
 | Method | Endpoint | Keterangan |
 | :--- | :--- | :--- |
