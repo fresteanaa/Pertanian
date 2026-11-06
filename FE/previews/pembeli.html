@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beranda Pembeli - PehTani</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #1e293b;
+      background-color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ─── Top Navbar ─── */
+    .buyer-top-navbar {
+      background: #ffffff;
+      padding: 16px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .buyer-navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .buyer-logo {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .buyer-logo .logo-peh { color: #1e3a2e; }
+    .buyer-logo .logo-tani { color: #008468; font-style: italic; }
+
+    /* Search Bar */
+    .buyer-search-bar {
+      flex: 1;
+      max-width: 480px;
+      display: flex;
+      align-items: center;
+      background-color: #008468;
+      border-radius: 4px;
+      overflow: hidden;
+      height: 38px;
+    }
+
+    .buyer-search-input {
+      flex: 1;
+      height: 100%;
+      border: none;
+      background: transparent;
+      padding: 0 16px;
+      color: #ffffff;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .buyer-search-input::placeholder {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .buyer-search-btn {
+      width: 44px;
+      height: 100%;
+      background-color: #ff6b35;
+      border: none;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+
+    .buyer-search-btn:hover {
+      background-color: #e85a24;
+    }
+
+    /* Profile Chip */
+    .buyer-profile-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .buyer-username {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .buyer-avatar-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #008468;
+    }
+
+    /* ─── Sub-Navbar Bar ─── */
+    .buyer-subnav-bar {
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 8px 0;
+    }
+
+    .buyer-subnav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .btn-pesanan-saya {
+      background-color: #ff6b35;
+      color: #ffffff;
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 8px 20px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      font-family: inherit;
+    }
+
+    .btn-pesanan-saya:hover {
+      background-color: #e85a24;
+    }
+
+    .buyer-nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .buyer-nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: #64748b;
+      padding: 6px 0;
+      transition: color 0.15s ease;
+    }
+
+    .buyer-nav-link:hover,
+    .buyer-nav-link.active {
+      color: #008468;
+      font-weight: 700;
+    }
+
+    .buyer-nav-link.active {
+      border-bottom: 2px solid #008468;
+    }
+
+    /* ─── Main Content ─── */
+    .buyer-main-area {
+      flex: 1;
+      padding: 24px 0 60px 0;
+    }
+
+    /* Hero Section (3 Columns) */
+    .buyer-hero-grid {
+      display: grid;
+      grid-template-columns: 220px 1fr 220px;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    /* Category Menu */
+    .category-menu-card {
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      background: #ffffff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      height: fit-content;
+    }
+
+    .category-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px;
+      border: none;
+      background: transparent;
+      border-bottom: 1px solid #f1f5f9;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #334155;
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+      font-family: inherit;
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+
+    .category-item:last-child {
+      border-bottom: none;
+    }
+
+    .category-item:hover,
+    .category-item.active {
+      background-color: #f0fdf4;
+      color: #008468;
+    }
+
+    .cat-icon-text {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cat-chevron {
+      font-size: 18px;
+      color: #94a3b8;
+    }
+
+    /* Center Main Banner */
+    .hero-main-banner {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 250px;
+      background-color: #0f172a;
+    }
+
+    .hero-banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+    }
+
+    .hero-banner-overlay {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 50%;
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 16px;
+      background: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7) 40%);
+    }
+
+    .hero-banner-text {
+      color: #ffffff;
+      font-size: 13px;
+      line-height: 1.5;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    }
+
+    .btn-temukan {
+      background-color: #ff6b35;
+      color: #ffffff;
+      font-size: 12.5px;
+      font-weight: 600;
+      padding: 7px 18px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Promo Card */
+    .hero-promo-card {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      height: 250px;
+    }
+
+    .promo-card-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .promo-card-overlay {
+      position: absolute;
+      inset: 0;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 12px;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.2) 60%);
+    }
+
+    .promo-title {
+      color: #ffffff;
+      font-size: 14.5px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .btn-pesan {
+      background-color: #ff6b35;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 18px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Step Process Bar */
+    .buyer-steps-bar {
+      background-color: #008468;
+      border-radius: 6px;
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #ffffff;
+      margin-bottom: 36px;
+    }
+
+    .step-node {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background-color: #ffffff;
+      color: #008468;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .step-connector {
+      flex: 1;
+      height: 1px;
+      background-color: rgba(255, 255, 255, 0.4);
+      margin: 0 16px;
+    }
+
+    /* Groups */
+    .produce-group-section {
+      margin-bottom: 40px;
+    }
+
+    .produce-group-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+
+    .badge-fresh {
+      display: inline-block;
+      background-color: #e86343;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+    }
+
+    .group-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #008468;
+    }
+
+    .btn-lainnya {
+      background: none;
+      border: none;
+      color: #008468;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Product Grid */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .buyer-product-card {
+      border: 1px solid #71717a;
+      border-radius: 8px;
+      background: #ffffff;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      transition: transform 0.18s ease;
+    }
+
+    .buyer-product-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .product-img-wrap {
+      width: 100%;
+      height: 140px;
+      overflow: hidden;
+      background-color: #f8fafc;
+    }
+
+    .product-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-info-wrap {
+      padding: 12px 14px 14px 14px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-name {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #1e293b;
+      margin: 0 0 3px 0;
+    }
+
+    .product-cat {
+      font-size: 11.5px;
+      color: #0284c7;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .product-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    .product-price {
+      font-size: 14px;
+      font-weight: 800;
+      color: #008468;
+    }
+
+    .product-unit {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .product-location {
+      font-size: 11.5px;
+      color: #64748b;
+      margin-bottom: 4px;
+    }
+
+    .product-sold {
+      font-size: 11px;
+      color: #0284c7;
+      font-weight: 500;
+    }
+
+    /* Articles */
+    .buyer-articles-section {
+      margin-bottom: 40px;
+    }
+
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .article-card {
+      position: relative;
+      height: 220px;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #0f172a;
+    }
+
+    .article-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+    }
+
+    .article-overlay {
+      position: absolute;
+      inset: 0;
+      padding: 20px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.35) 65%, transparent 100%);
+      color: #ffffff;
+    }
+
+    .article-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+    }
+
+    .article-desc {
+      font-size: 11.5px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.9);
+      margin: 0 0 12px 0;
+    }
+
+    .btn-article-more {
+      align-self: flex-start;
+      background-color: #008468;
+      color: #ffffff;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Search Results View */
+    .search-results-layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    .search-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #008468;
+      margin-bottom: 24px;
+    }
+
+    .search-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Footer */
+    .buyer-footer {
+      background: #00745b;
+      padding: 18px 0;
+      color: rgba(255, 255, 255, 0.95);
+      margin-top: auto;
+    }
+
+    .buyer-footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .buyer-footer .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <header class="buyer-top-navbar">
+    <div class="container buyer-navbar-inner">
+      <a href="pembeli.html" class="buyer-logo">
+        <span class="logo-peh">peh</span>
+        <span class="logo-tani">tani</span>
+      </a>
+
+      <!-- Search Bar -->
+      <form class="buyer-search-bar" id="searchForm" onsubmit="handleSearch(event)">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Tomat Segar..."
+          class="buyer-search-input"
+        />
+        <button type="submit" class="buyer-search-btn" aria-label="Cari">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </form>
+
+      <div class="buyer-profile-chip">
+        <span class="buyer-username">ramayuda</span>
+        <div class="buyer-avatar-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Subnav -->
+  <div class="buyer-subnav-bar">
+    <div class="container buyer-subnav-inner">
+      <button type="button" class="btn-pesanan-saya" onclick="alert('Membuka daftar pesanan Anda...')">
+        Pesanan Saya
+      </button>
+
+      <nav class="buyer-nav-menu">
+        <a href="pembeli.html" class="buyer-nav-link active">Beranda</a>
+        <a href="pembeli.html" class="buyer-nav-link">Pasar</a>
+        <a href="tentang.html" class="buyer-nav-link">Tentang</a>
+        <a href="bantuan.html" class="buyer-nav-link">Pelaporan</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main Content Area -->
+  <main class="buyer-main-area">
+    <div class="container">
+      
+      <!-- SCREEN 1: NORMAL VIEW -->
+      <div id="normalView">
+        <div class="buyer-hero-grid">
+          <div class="category-menu-card">
+            <button type="button" class="category-item" onclick="filterCategory('Sayuran')">
+              <span class="cat-icon-text">🌱 Sayuran</span>
+              <span class="cat-chevron">&rsaquo;</span>
+            </button>
+            <button type="button" class="category-item" onclick="filterCategory('Buah')">
+              <span class="cat-icon-text">🍎 Buah-Buahan</span>
+              <span class="cat-chevron">&rsaquo;</span>
+            </button>
+            <button type="button" class="category-item" onclick="filterCategory('Rempah')">
+              <span class="cat-icon-text">🌿 Rempah-Rempah</span>
+              <span class="cat-chevron">&rsaquo;</span>
+            </button>
+          </div>
+
+          <div class="hero-main-banner">
+            <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=1200&q=80" alt="Sayuran" class="hero-banner-img" />
+            <div class="hero-banner-overlay">
+              <p class="hero-banner-text">
+                Dapatkan sayur-sayuran segar dengan harga spesial! Nikmati harga spesial untuk berbagai pilihan sayur sehat, hanya dalam waktu terbatas.
+              </p>
+              <button type="button" class="btn-temukan" onclick="filterCategory('Sayuran')">Temukan Sekarang</button>
+            </div>
+          </div>
+
+          <div class="hero-promo-card">
+            <img src="https://images.unsplash.com/photo-1619566636858-adf3ef46400b?auto=format&fit=crop&w=600&q=80" alt="Buah" class="promo-card-img" />
+            <div class="promo-card-overlay">
+              <h3 class="promo-title">Buah-Buahan Segar, dengan harga spesial</h3>
+              <button type="button" class="btn-pesan" onclick="filterCategory('Buah')">Pesan</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Steps Bar -->
+        <div class="buyer-steps-bar">
+          <div class="step-node"><span class="step-num">1</span><span>Temukan Produk</span></div>
+          <div class="step-connector"></div>
+          <div class="step-node"><span class="step-num">2</span><span>Lihat Detail Produk</span></div>
+          <div class="step-connector"></div>
+          <div class="step-node"><span class="step-num">3</span><span>Pesan Produk</span></div>
+          <div class="step-connector"></div>
+          <div class="step-node"><span class="step-num">4</span><span>Lakukan Pembayaran</span></div>
+        </div>
+
+        <!-- Sayuran Segar -->
+        <section class="produce-group-section">
+          <div class="produce-group-header">
+            <div>
+              <span class="badge-fresh">Baru Saja Dipanen</span>
+              <h2 class="group-title">Sayuran Segar</h2>
+            </div>
+            <button type="button" class="btn-lainnya" onclick="filterCategory('Sayuran')">Lainnya &rarr;</button>
+          </div>
+
+          <div class="product-grid">
+            <div class="buyer-product-card">
+              <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1546094096-0df4bcabd337?auto=format&fit=crop&w=500&q=80" alt="Tomat" class="product-thumb" /></div>
+              <div class="product-info-wrap">
+                <h4 class="product-name">Tomat Merah Segar</h4>
+                <span class="product-cat">Sayuran</span>
+                <div class="product-price-row"><span class="product-price">Rp12.000</span><span class="product-unit">/ Kg</span></div>
+                <div class="product-location">Lembang, Jawa Barat</div>
+                <div class="product-sold">Terjual 226 kg</div>
+              </div>
+            </div>
+
+            <div class="buyer-product-card">
+              <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1583119022894-919a68a3d0e3?auto=format&fit=crop&w=500&q=80" alt="Cabai" class="product-thumb" /></div>
+              <div class="product-info-wrap">
+                <h4 class="product-name">Cabai Rawit Merah</h4>
+                <span class="product-cat">Sayuran</span>
+                <div class="product-price-row"><span class="product-price">Rp30.000</span><span class="product-unit">/ Kg</span></div>
+                <div class="product-location">Klaten, Jawa Tengah</div>
+                <div class="product-sold">Terjual 188 kg</div>
+              </div>
+            </div>
+
+            <div class="buyer-product-card">
+              <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?auto=format&fit=crop&w=500&q=80" alt="Wortel" class="product-thumb" /></div>
+              <div class="product-info-wrap">
+                <h4 class="product-name">Wortel Segar</h4>
+                <span class="product-cat">Sayuran</span>
+                <div class="product-price-row"><span class="product-price">Rp10.000</span><span class="product-unit">/ Kg</span></div>
+                <div class="product-location">Bandung, Jawa Barat</div>
+                <div class="product-sold">Terjual 333 kg</div>
+              </div>
+            </div>
+
+            <div class="buyer-product-card">
+              <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=500&q=80" alt="Kentang" class="product-thumb" /></div>
+              <div class="product-info-wrap">
+                <h4 class="product-name">Kentang Dieng</h4>
+                <span class="product-cat">Sayuran</span>
+                <div class="product-price-row"><span class="product-price">Rp15.000</span><span class="product-unit">/ Kg</span></div>
+                <div class="product-location">Wonosobo, Jawa Tengah</div>
+                <div class="product-sold">Terjual 200 kg</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Articles -->
+        <section class="buyer-articles-section">
+          <div class="articles-grid">
+            <div class="article-card">
+              <img src="https://images.unsplash.com/photo-1519996529931-28324d5a630e?auto=format&fit=crop&w=600&q=80" alt="Buah" class="article-img" />
+              <div class="article-overlay">
+                <h3 class="article-title">Panduan Memilih Buah Segar</h3>
+                <p class="article-desc">Artikel ini memberikan panduan mudah dalam memilih buah yang matang dan segar di pasar atau supermarket.</p>
+                <button type="button" class="btn-article-more">Lihat Lebih Lanjut</button>
+              </div>
+            </div>
+
+            <div class="article-card">
+              <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=600&q=80" alt="Organik" class="article-img" />
+              <div class="article-overlay">
+                <h3 class="article-title">Manfaat Konsumsi Organik</h3>
+                <p class="article-desc">Temukan berbagai manfaat kesehatan dari makanan organik bagi kesehatan dan lingkungan.</p>
+                <button type="button" class="btn-article-more">Lihat Lebih Lanjut</button>
+              </div>
+            </div>
+
+            <div class="article-card">
+              <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=600&q=80" alt="Memasak" class="article-img" />
+              <div class="article-overlay">
+                <h3 class="article-title">Cara Memasak Sehat</h3>
+                <p class="article-desc">Belajar teknik memasak sehat yang mempertahankan nutrisi makanan secara maksimal.</p>
+                <button type="button" class="btn-article-more">Lihat Lebih Lanjut</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Buah-Buahan Segar -->
+        <section class="produce-group-section">
+          <div class="produce-group-header">
+            <div>
+              <span class="badge-fresh">Baru Saja Dipanen</span>
+              <h2 class="group-title">Buah-Buahan Segar</h2>
+            </div>
+            <button type="button" class="btn-lainnya" onclick="filterCategory('Buah')">Lainnya &rarr;</button>
+          </div>
+
+          <div class="product-grid">
+            <div class="buyer-product-card">
+              <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=500&q=80" alt="Pisang" class="product-thumb" /></div>
+              <div class="product-info-wrap">
+                <h4 class="product-name">Pisang Cavendish</h4>
+                <span class="product-cat">Buah</span>
+                <div class="product-price-row"><span class="product-price">Rp20.000</span><span class="product-unit">/ Kg</span></div>
+                <div class="product-location">Lampung, Sumatera</div>
+                <div class="product-sold">Terjual 280 kg</div>
+              </div>
+            </div>
+
+            <div class="buyer-product-card">
+              <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=500&q=80" alt="Mangga" class="product-thumb" /></div>
+              <div class="product-info-wrap">
+                <h4 class="product-name">Mangga Harum Manis</h4>
+                <span class="product-cat">Buah</span>
+                <div class="product-price-row"><span class="product-price">Rp30.000</span><span class="product-unit">/ Kg</span></div>
+                <div class="product-location">Indramayu, Jawa Barat</div>
+                <div class="product-sold">Terjual 150 kg</div>
+              </div>
+            </div>
+
+            <div class="buyer-product-card">
+              <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=500&q=80" alt="Apel" class="product-thumb" /></div>
+              <div class="product-info-wrap">
+                <h4 class="product-name">Apel Malang</h4>
+                <span class="product-cat">Buah</span>
+                <div class="product-price-row"><span class="product-price">Rp25.000</span><span class="product-unit">/ Kg</span></div>
+                <div class="product-location">Malang, Jawa Timur</div>
+                <div class="product-sold">Terjual 150 kg</div>
+              </div>
+            </div>
+
+            <div class="buyer-product-card">
+              <div class="product-img-wrap"><img src="https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&w=500&q=80" alt="Jeruk" class="product-thumb" /></div>
+              <div class="product-info-wrap">
+                <h4 class="product-name">Jeruk Medan</h4>
+                <span class="product-cat">Buah</span>
+                <div class="product-price-row"><span class="product-price">Rp20.000</span><span class="product-unit">/ Kg</span></div>
+                <div class="product-location">Medan, Sumatera Utara</div>
+                <div class="product-sold">Terjual 300 kg</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- SCREEN 2: SEARCH RESULTS VIEW -->
+      <div id="searchView" style="display: none;">
+        <div class="search-results-layout">
+          <div class="category-menu-card">
+            <button type="button" class="category-item" onclick="filterCategory('Sayuran')">
+              <span class="cat-icon-text">🌱 Sayuran</span>
+              <span class="cat-chevron">&rsaquo;</span>
+            </button>
+            <button type="button" class="category-item" onclick="filterCategory('Buah')">
+              <span class="cat-icon-text">🍎 Buah-Buahan</span>
+              <span class="cat-chevron">&rsaquo;</span>
+            </button>
+            <button type="button" class="category-item" onclick="filterCategory('Rempah')">
+              <span class="cat-icon-text">🌿 Rempah-Rempah</span>
+              <span class="cat-chevron">&rsaquo;</span>
+            </button>
+          </div>
+
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+              <h1 class="search-title" id="searchTitle">Pencarian Ditemukan</h1>
+              <button type="button" style="padding: 6px 14px; border: 1px solid #cbd5e1; background: #fff; border-radius: 6px; cursor: pointer;" onclick="resetSearch()">
+                &times; Bersihkan Pencarian
+              </button>
+            </div>
+
+            <div class="product-grid search-grid" id="searchGrid">
+              <!-- Cards dynamically rendered here -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="buyer-footer">
+    <div class="container buyer-footer-inner">
+      <span>@2024, PEHTANI, Ramayuda Mahardika</span>
+      <div class="footer-links">
+        <a href="kebijakan-privasi.html">Kebijakan Privasi</a>
+        <a href="syarat-ketentuan.html">Syarat dan Ketentuan</a>
+        <a href="bantuan.html">Bantuan &amp; Kontak</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const allProducts = [
+      { name: 'Tomat Merah Segar', category: 'Sayuran', price: 'Rp12.000 / Kg', location: 'Lembang, Jawa Barat', sold: 'Terjual 226 kg', img: 'https://images.unsplash.com/photo-1546094096-0df4bcabd337?auto=format&fit=crop&w=500&q=80' },
+      { name: 'Tomat Segar', category: 'Sayuran', price: 'Rp12.000 / Kg', location: 'Lembang, Jawa Barat', sold: 'Terjual 226 kg', img: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?auto=format&fit=crop&w=500&q=80' },
+      { name: 'Cabai Rawit Merah', category: 'Sayuran', price: 'Rp30.000 / Kg', location: 'Klaten, Jawa Tengah', sold: 'Terjual 188 kg', img: 'https://images.unsplash.com/photo-1583119022894-919a68a3d0e3?auto=format&fit=crop&w=500&q=80' },
+      { name: 'Wortel Segar', category: 'Sayuran', price: 'Rp10.000 / Kg', location: 'Bandung, Jawa Barat', sold: 'Terjual 333 kg', img: 'https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?auto=format&fit=crop&w=500&q=80' },
+      { name: 'Kentang Dieng', category: 'Sayuran', price: 'Rp15.000 / Kg', location: 'Wonosobo, Jawa Tengah', sold: 'Terjual 200 kg', img: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=500&q=80' },
+      { name: 'Pisang Cavendish', category: 'Buah', price: 'Rp20.000 / Kg', location: 'Lampung, Sumatera', sold: 'Terjual 280 kg', img: 'https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?auto=format&fit=crop&w=500&q=80' },
+      { name: 'Mangga Harum Manis', category: 'Buah', price: 'Rp30.000 / Kg', location: 'Indramayu, Jawa Barat', sold: 'Terjual 150 kg', img: 'https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=500&q=80' },
+      { name: 'Apel Malang', category: 'Buah', price: 'Rp25.000 / Kg', location: 'Malang, Jawa Timur', sold: 'Terjual 150 kg', img: 'https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?auto=format&fit=crop&w=500&q=80' },
+      { name: 'Jeruk Medan', category: 'Buah', price: 'Rp20.000 / Kg', location: 'Medan, Sumatera Utara', sold: 'Terjual 300 kg', img: 'https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?auto=format&fit=crop&w=500&q=80' }
+    ];
+
+    function handleSearch(e) {
+      if (e) e.preventDefault();
+      const q = document.getElementById('searchInput').value.trim().toLowerCase();
+      if (!q) {
+        resetSearch();
+        return;
+      }
+
+      const filtered = allProducts.filter(p => p.name.toLowerCase().includes(q) || p.location.toLowerCase().includes(q) || p.category.toLowerCase().includes(q));
+      renderSearchResults(filtered, `Pencarian Ditemukan ("${q}")`);
+    }
+
+    function filterCategory(cat) {
+      document.getElementById('searchInput').value = cat;
+      const filtered = allProducts.filter(p => p.category.toLowerCase() === cat.toLowerCase());
+      renderSearchResults(filtered, `Kategori: ${cat}`);
+    }
+
+    function renderSearchResults(items, title) {
+      document.getElementById('normalView').style.display = 'none';
+      document.getElementById('searchView').style.display = 'block';
+      document.getElementById('searchTitle').textContent = title || 'Pencarian Ditemukan';
+
+      const grid = document.getElementById('searchGrid');
+      if (items.length === 0) {
+        grid.innerHTML = '<p style="grid-column: 1/-1; padding: 30px; text-align: center; color: #64748b;">Tidak ada produk yang cocok.</p>';
+        return;
+      }
+
+      grid.innerHTML = items.map(p => `
+        <div class="buyer-product-card">
+          <div class="product-img-wrap"><img src="${p.img}" alt="${p.name}" class="product-thumb" /></div>
+          <div class="product-info-wrap">
+            <h4 class="product-name">${p.name}</h4>
+            <span class="product-cat">${p.category}</span>
+            <div class="product-price-row"><span class="product-price">${p.price}</span></div>
+            <div class="product-location">${p.location}</div>
+            <div class="product-sold">${p.sold}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function resetSearch() {
+      document.getElementById('searchInput').value = '';
+      document.getElementById('normalView').style.display = 'block';
+      document.getElementById('searchView').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
+
