@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { authApi } from '../services/api';
 import './LoginPage.css';
 
 export default function LoginPage() {
@@ -20,18 +21,17 @@ export default function LoginPage() {
     }
     setLoading(true);
     try {
-      // TODO: Ganti URL ini dengan endpoint backend nyata
-      const res = await fetch('http://localhost:3000/auth/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: form.email, password: form.password }),
+      const data = await authApi.login({
+        email: form.email,
+        password: form.password,
       });
-      if (!res.ok) throw new Error('Email atau kata sandi salah.');
-      const data = await res.json();
       localStorage.setItem('token', data.access_token);
+      if (data.user) {
+        localStorage.setItem('user', JSON.stringify(data.user));
+      }
       window.location.href = '/'; // Arahkan ke halaman utama
     } catch (err) {
-      setError(err.message || 'Terjadi kesalahan. Coba lagi.');
+      setError(err.message || 'Terjadi kesalahan saat masuk. Coba lagi.');
     } finally {
       setLoading(false);
     }
