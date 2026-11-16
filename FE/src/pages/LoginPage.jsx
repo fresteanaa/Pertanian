@@ -29,7 +29,8 @@ export default function LoginPage() {
       if (data.user) {
         localStorage.setItem('user', JSON.stringify(data.user));
       }
-      window.location.href = '/'; // Arahkan ke halaman utama
+      const targetRoute = data.user?.role === 'petani' || form.email.includes('petani') ? '/petani' : '/pembeli';
+      window.location.href = targetRoute;
     } catch (err) {
       setError(err.message || 'Terjadi kesalahan saat masuk. Coba lagi.');
     } finally {

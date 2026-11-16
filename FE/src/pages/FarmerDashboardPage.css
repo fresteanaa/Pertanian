@@ -1,0 +1,692 @@
+/* ==========================================================================
+   PehTani — Farmer Dashboard Page (Beranda Petani)
+   ========================================================================== */
+
+.farmer-dashboard {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  font-family: var(--font-family, 'Plus Jakarta Sans', 'Inter', sans-serif);
+  color: #1e293b;
+}
+
+.farmer-dashboard a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.farmer-dashboard .container {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+/* ─── Top Navbar ─── */
+.farmer-top-navbar {
+  background: #ffffff;
+  padding: 16px 0;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.farmer-navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.farmer-brand-logo {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.farmer-brand-logo .logo-peh { color: #1e3a2e; }
+.farmer-brand-logo .logo-tani { color: #008468; font-style: italic; }
+
+/* Search Bar */
+.farmer-search-bar {
+  flex: 1;
+  max-width: 480px;
+  display: flex;
+  align-items: center;
+  background-color: #008468;
+  border-radius: 4px;
+  overflow: hidden;
+  height: 38px;
+}
+
+.farmer-search-input {
+  flex: 1;
+  height: 100%;
+  border: none;
+  background: transparent;
+  padding: 0 16px;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+}
+
+.farmer-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.farmer-search-btn {
+  width: 44px;
+  height: 100%;
+  background-color: #ff6b35;
+  border: none;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.farmer-search-btn:hover {
+  background-color: #e85a24;
+}
+
+/* User Profile */
+.farmer-profile-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.farmer-username {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.farmer-avatar-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #008468;
+}
+
+/* ─── Sub-Navbar Bar ─── */
+.farmer-subnav-bar {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  padding: 8px 0;
+}
+
+.farmer-subnav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-konfirmasi-pesanan {
+  background-color: #ff6b35;
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 8px 22px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  font-family: inherit;
+}
+
+.btn-konfirmasi-pesanan:hover {
+  background-color: #e85a24;
+  transform: translateY(-1px);
+}
+
+.farmer-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.farmer-nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: #64748b;
+  padding: 6px 0;
+  transition: color 0.15s ease;
+}
+
+.farmer-nav-link:hover,
+.farmer-nav-link.active {
+  color: #008468;
+  font-weight: 700;
+}
+
+.farmer-nav-link.active {
+  border-bottom: 2px solid #008468;
+}
+
+/* ─── Main Content ─── */
+.farmer-main-content {
+  flex: 1;
+  padding: 36px 0 60px 0;
+}
+
+/* ─── Section: Daftar Hasil Panen Saya ─── */
+.harvest-section {
+  margin-bottom: 50px;
+}
+
+.harvest-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.harvest-section-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: #008468;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.btn-tambah-panen {
+  background-color: #008468;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 24px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.1s ease;
+  font-family: inherit;
+}
+
+.btn-tambah-panen:hover {
+  background-color: #006f57;
+  transform: translateY(-1px);
+}
+
+/* Harvest Cards Grid */
+.harvest-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.harvest-card {
+  border: 1px solid #71717a;
+  border-radius: 12px;
+  background: #ffffff;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.harvest-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.harvest-img-box {
+  width: 90px;
+  height: 90px;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: #f1f5f9;
+}
+
+.harvest-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.harvest-info-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.harvest-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0 0 2px 0;
+}
+
+.harvest-category {
+  font-size: 12px;
+  color: #0284c7;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.harvest-price {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #008468;
+  margin-bottom: 4px;
+}
+
+.harvest-location {
+  font-size: 12px;
+  color: #64748b;
+}
+
+.harvest-stock-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding-left: 12px;
+  border-left: 1px dashed #e2e8f0;
+  min-width: 80px;
+}
+
+.stock-label {
+  font-size: 11.5px;
+  color: #64748b;
+  margin-bottom: 2px;
+}
+
+.stock-value {
+  font-size: 18px;
+  font-weight: 800;
+  color: #008468;
+}
+
+/* ─── Section: Artikel Terkait ─── */
+.farmer-articles-section {
+  margin-bottom: 40px;
+}
+
+.articles-heading {
+  font-size: 24px;
+  font-weight: 800;
+  color: #008468;
+  margin: 0 0 20px 0;
+  letter-spacing: -0.3px;
+}
+
+.farmer-articles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.farmer-article-card {
+  position: relative;
+  height: 250px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #0f172a;
+}
+
+.farmer-article-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+
+.farmer-article-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.35) 65%, transparent 100%);
+  color: #ffffff;
+}
+
+.farmer-article-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+  line-height: 1.35;
+}
+
+.farmer-article-desc {
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 12px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.btn-article-more {
+  align-self: flex-start;
+  background-color: #008468;
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  font-family: inherit;
+}
+
+.btn-article-more:hover {
+  background-color: #006f57;
+}
+
+/* ─── Modals ─── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-box {
+  background: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 12px;
+  padding: 24px 28px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  animation: modalFadeIn 0.2s ease-out;
+}
+
+.modal-orders {
+  max-width: 580px;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f1f5f9;
+  padding-bottom: 14px;
+}
+
+.modal-header h2 {
+  font-size: 19px;
+  font-weight: 700;
+  color: #008468;
+  margin: 0;
+}
+
+.btn-close-modal {
+  background: none;
+  border: none;
+  font-size: 26px;
+  cursor: pointer;
+  color: #94a3b8;
+  line-height: 1;
+}
+
+.btn-close-modal:hover {
+  color: #1e293b;
+}
+
+/* Modal Form */
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.modal-field label {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.modal-field input,
+.modal-field select {
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+.modal-field input:focus,
+.modal-field select:focus {
+  border-color: #008468;
+}
+
+.modal-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.btn-cancel {
+  background: none;
+  border: 1px solid #cbd5e1;
+  color: #64748b;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-save-crop {
+  background-color: #008468;
+  color: #ffffff;
+  border: none;
+  padding: 9px 22px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn-save-crop:hover {
+  background-color: #006f57;
+}
+
+/* Orders List */
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 420px;
+  overflow-y: auto;
+}
+
+.farmer-order-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 14px 16px;
+  background-color: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.order-details {
+  flex: 1;
+}
+
+.order-header-line {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.order-id {
+  font-family: monospace;
+  font-weight: 700;
+  font-size: 12.5px;
+  color: #334155;
+}
+
+.order-status-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 9999px;
+}
+
+.status-waiting {
+  background-color: #fef3c7;
+  color: #b45309;
+}
+
+.status-confirmed {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.order-buyer {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 2px 0;
+}
+
+.order-item-desc {
+  font-size: 13px;
+  color: #475569;
+  margin: 0 0 4px 0;
+}
+
+.order-meta {
+  font-size: 11.5px;
+  color: #94a3b8;
+}
+
+.btn-confirm-action {
+  background-color: #ff6b35;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.15s ease;
+}
+
+.btn-confirm-action:hover {
+  background-color: #e85a24;
+}
+
+/* ─── Footer ─── */
+.farmer-footer {
+  background: #00745b;
+  padding: 18px 0;
+  color: rgba(255, 255, 255, 0.95);
+  margin-top: auto;
+}
+
+.farmer-footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.farmer-footer-inner span {
+  font-size: 13px;
+}
+
+.farmer-footer .footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.farmer-footer .footer-links a {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  text-decoration: none;
+  transition: opacity 0.15s;
+}
+
+.farmer-footer .footer-links a:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  .harvest-cards-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .farmer-articles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .farmer-order-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .farmer-navbar-inner {
+    flex-wrap: wrap;
+  }
+
+  .farmer-search-bar {
+    order: 3;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .farmer-footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+}

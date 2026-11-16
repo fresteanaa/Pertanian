@@ -8,6 +8,9 @@ import AboutSection from './components/AboutSection';
 import StatsSection from './components/StatsSection';
 import FeatureCards from './components/FeatureCards';
 import Footer from './components/Footer';
+
+import BuyerDashboardPage from './pages/BuyerDashboardPage';
+import FarmerDashboardPage from './pages/FarmerDashboardPage';
 import LoginPage from './pages/LoginPage';
 import AboutPage from './pages/AboutPage';
 import HelpContactPage from './pages/HelpContactPage';
@@ -18,7 +21,7 @@ import OtpVerificationPage from './pages/OtpVerificationPage';
 import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsPage from './pages/TermsPage';
 
-// ─── Halaman Utama ─────────────────────────────────────────────────────────
+// ─── Halaman Utama Landing Page ────────────────────────────────────────────
 function HomePage() {
   return (
     <>
@@ -38,10 +41,18 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Halaman Landing / Beranda */}
+        {/* Halaman Landing / Beranda Publik */}
         <Route path="/" element={<HomePage />} />
 
-        {/* Halaman Login */}
+        {/* 🌿 Fitur Beranda Petani (Role Petani) */}
+        <Route path="/petani" element={<FarmerDashboardPage />} />
+        <Route path="/beranda-petani" element={<FarmerDashboardPage />} />
+
+        {/* 🛒 Fitur Pasar & Beranda Pembeli (Role Pembeli) */}
+        <Route path="/pembeli" element={<BuyerDashboardPage />} />
+        <Route path="/pasar" element={<BuyerDashboardPage />} />
+
+        {/* Halaman Login / Masuk */}
         <Route path="/masuk" element={<LoginPage />} />
 
         {/* Halaman Pilih Role Pendaftaran */}
@@ -56,10 +67,10 @@ export default function App() {
         {/* Halaman Verifikasi OTP */}
         <Route path="/verifikasi-otp" element={<OtpVerificationPage />} />
 
-        {/* Halaman Tentang */}
+        {/* Halaman Tentang Kami */}
         <Route path="/tentang" element={<AboutPage />} />
 
-        {/* Halaman Bantuan & Kontak */}
+        {/* Halaman Bantuan & Kontak / Pelaporan */}
         <Route path="/bantuan" element={<HelpContactPage />} />
 
         {/* Halaman Kebijakan Privasi */}

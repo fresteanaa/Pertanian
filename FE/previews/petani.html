@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Beranda Petani - PehTani</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #1e293b;
+      background-color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ─── Top Navbar ─── */
+    .farmer-top-navbar {
+      background: #ffffff;
+      padding: 16px 0;
+      border-bottom: 1px solid #f1f5f9;
+    }
+
+    .farmer-navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .farmer-brand-logo {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .farmer-brand-logo .logo-peh { color: #1e3a2e; }
+    .farmer-brand-logo .logo-tani { color: #008468; font-style: italic; }
+
+    /* Search Bar */
+    .farmer-search-bar {
+      flex: 1;
+      max-width: 480px;
+      display: flex;
+      align-items: center;
+      background-color: #008468;
+      border-radius: 4px;
+      overflow: hidden;
+      height: 38px;
+    }
+
+    .farmer-search-input {
+      flex: 1;
+      height: 100%;
+      border: none;
+      background: transparent;
+      padding: 0 16px;
+      color: #ffffff;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .farmer-search-input::placeholder {
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .farmer-search-btn {
+      width: 44px;
+      height: 100%;
+      background-color: #ff6b35;
+      border: none;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+    }
+
+    .farmer-search-btn:hover {
+      background-color: #e85a24;
+    }
+
+    /* User Profile */
+    .farmer-profile-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .farmer-username {
+      font-size: 14px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .farmer-avatar-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #008468;
+    }
+
+    /* ─── Sub-Navbar Bar ─── */
+    .farmer-subnav-bar {
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 8px 0;
+    }
+
+    .farmer-subnav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .btn-konfirmasi-pesanan {
+      background-color: #ff6b35;
+      color: #ffffff;
+      font-size: 13.5px;
+      font-weight: 600;
+      padding: 8px 22px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      font-family: inherit;
+    }
+
+    .btn-konfirmasi-pesanan:hover {
+      background-color: #e85a24;
+    }
+
+    .farmer-nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .farmer-nav-link {
+      font-size: 14px;
+      font-weight: 500;
+      color: #64748b;
+      padding: 6px 0;
+      transition: color 0.15s ease;
+    }
+
+    .farmer-nav-link:hover,
+    .farmer-nav-link.active {
+      color: #008468;
+      font-weight: 700;
+    }
+
+    .farmer-nav-link.active {
+      border-bottom: 2px solid #008468;
+    }
+
+    /* ─── Main Content ─── */
+    .farmer-main-content {
+      flex: 1;
+      padding: 36px 0 60px 0;
+    }
+
+    /* Section: Daftar Hasil Panen Saya */
+    .harvest-section {
+      margin-bottom: 50px;
+    }
+
+    .harvest-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .harvest-section-title {
+      font-size: 26px;
+      font-weight: 800;
+      color: #008468;
+      letter-spacing: -0.3px;
+    }
+
+    .btn-tambah-panen {
+      background-color: #008468;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 9px 24px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.15s ease;
+      font-family: inherit;
+    }
+
+    .btn-tambah-panen:hover {
+      background-color: #006f57;
+    }
+
+    /* Harvest Cards Grid */
+    .harvest-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    .harvest-card {
+      border: 1px solid #71717a;
+      border-radius: 12px;
+      background: #ffffff;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      transition: transform 0.18s ease;
+    }
+
+    .harvest-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .harvest-img-box {
+      width: 90px;
+      height: 90px;
+      border-radius: 8px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background-color: #f1f5f9;
+    }
+
+    .harvest-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .harvest-info-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .harvest-name {
+      font-size: 16px;
+      font-weight: 800;
+      color: #1e293b;
+      margin: 0 0 2px 0;
+    }
+
+    .harvest-category {
+      font-size: 12px;
+      color: #0284c7;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .harvest-price {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #008468;
+      margin-bottom: 4px;
+    }
+
+    .harvest-location {
+      font-size: 12px;
+      color: #64748b;
+    }
+
+    .harvest-stock-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+      padding-left: 12px;
+      border-left: 1px dashed #e2e8f0;
+      min-width: 80px;
+    }
+
+    .stock-label {
+      font-size: 11.5px;
+      color: #64748b;
+      margin-bottom: 2px;
+    }
+
+    .stock-value {
+      font-size: 18px;
+      font-weight: 800;
+      color: #008468;
+    }
+
+    /* Section: Artikel Terkait */
+    .farmer-articles-section {
+      margin-bottom: 40px;
+    }
+
+    .articles-heading {
+      font-size: 24px;
+      font-weight: 800;
+      color: #008468;
+      margin: 0 0 20px 0;
+      letter-spacing: -0.3px;
+    }
+
+    .farmer-articles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .farmer-article-card {
+      position: relative;
+      height: 250px;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #0f172a;
+    }
+
+    .farmer-article-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+    }
+
+    .farmer-article-overlay {
+      position: absolute;
+      inset: 0;
+      padding: 22px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.35) 65%, transparent 100%);
+      color: #ffffff;
+    }
+
+    .farmer-article-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      line-height: 1.35;
+    }
+
+    .farmer-article-desc {
+      font-size: 11.5px;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.9);
+      margin: 0 0 12px 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .btn-article-more {
+      align-self: flex-start;
+      background-color: #008468;
+      color: #ffffff;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+    }
+
+    /* Modal Styling */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      width: 100%;
+      max-width: 520px;
+      border-radius: 12px;
+      padding: 24px 28px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 14px;
+    }
+
+    .modal-header h2 {
+      font-size: 19px;
+      font-weight: 700;
+      color: #008468;
+      margin: 0;
+    }
+
+    .btn-close-modal {
+      background: none;
+      border: none;
+      font-size: 26px;
+      cursor: pointer;
+      color: #94a3b8;
+    }
+
+    .modal-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .modal-field label {
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .modal-field input,
+    .modal-field select {
+      height: 40px;
+      padding: 0 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+    }
+
+    .modal-row-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .btn-save-crop {
+      background-color: #008468;
+      color: #ffffff;
+      border: none;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    /* Footer */
+    .farmer-footer {
+      background: #00745b;
+      padding: 18px 0;
+      color: rgba(255, 255, 255, 0.95);
+      margin-top: auto;
+    }
+
+    .farmer-footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .farmer-footer .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .harvest-cards-grid { grid-template-columns: 1fr; }
+      .farmer-articles-grid { grid-template-columns: 1fr; }
+      .farmer-footer-inner { flex-direction: column; text-align: center; gap: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <header class="farmer-top-navbar">
+    <div class="container farmer-navbar-inner">
+      <a href="petani.html" class="farmer-brand-logo">
+        <span class="logo-peh">peh</span>
+        <span class="logo-tani">tani</span>
+      </a>
+
+      <!-- Search Bar -->
+      <div class="farmer-search-bar">
+        <input
+          type="text"
+          id="searchCropInput"
+          placeholder="pencarian..."
+          class="farmer-search-input"
+          oninput="handleSearchCrops()"
+        />
+        <button type="button" class="farmer-search-btn" aria-label="Cari">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- User Profile -->
+      <div class="farmer-profile-chip">
+        <span class="farmer-username">rudi_hartanto</span>
+        <div class="farmer-avatar-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Subnav -->
+  <div class="farmer-subnav-bar">
+    <div class="container farmer-subnav-inner">
+      <button type="button" class="btn-konfirmasi-pesanan" onclick="openModal('modalOrders')">
+        Konfirmasi Pemesanan
+      </button>
+
+      <nav class="farmer-nav-menu">
+        <a href="petani.html" class="farmer-nav-link active">Beranda</a>
+        <a href="tentang.html" class="farmer-nav-link">Tentang</a>
+        <a href="bantuan.html" class="farmer-nav-link">Pelaporan</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="farmer-main-content">
+    <div class="container">
+
+      <!-- Section: Daftar Hasil Panen Saya -->
+      <section class="harvest-section">
+        <div class="harvest-header-row">
+          <h1 class="harvest-section-title">Daftar Hasil Panen Saya</h1>
+          <button type="button" class="btn-tambah-panen" onclick="openModal('modalAdd')">
+            Tambah Hasil Panen
+          </button>
+        </div>
+
+        <div class="harvest-cards-grid" id="harvestsGrid">
+          <!-- Card 1 -->
+          <div class="harvest-card">
+            <div class="harvest-img-box">
+              <img src="https://images.unsplash.com/photo-1546094096-0df4bcabd337?auto=format&fit=crop&w=500&q=80" alt="Tomat" class="harvest-img" />
+            </div>
+            <div class="harvest-info-col">
+              <h3 class="harvest-name">Tomat Merah Segar</h3>
+              <span class="harvest-category">Sayuran</span>
+              <div class="harvest-price">Rp12.000 / Kg</div>
+              <div class="harvest-location">Lembang, Jawa Barat</div>
+            </div>
+            <div class="harvest-stock-col">
+              <span class="stock-label">Pasokan</span>
+              <span class="stock-value">50 Kg</span>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="harvest-card">
+            <div class="harvest-img-box">
+              <img src="https://images.unsplash.com/photo-1583119022894-919a68a3d0e3?auto=format&fit=crop&w=500&q=80" alt="Cabai" class="harvest-img" />
+            </div>
+            <div class="harvest-info-col">
+              <h3 class="harvest-name">Cabai Rawit Merah</h3>
+              <span class="harvest-category">Sayuran</span>
+              <div class="harvest-price">Rp30.000 / Kg</div>
+              <div class="harvest-location">Brebes, Jawa Tengah</div>
+            </div>
+            <div class="harvest-stock-col">
+              <span class="stock-label">Pasokan</span>
+              <span class="stock-value">120 Kg</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Artikel Terkait -->
+      <section class="farmer-articles-section">
+        <h2 class="articles-heading">Artikel Terkait</h2>
+
+        <div class="farmer-articles-grid">
+          <!-- Card 1 -->
+          <div class="farmer-article-card">
+            <img src="https://images.unsplash.com/photo-1586771107445-d3ca888129ff?auto=format&fit=crop&w=600&q=80" alt="Greenhouse" class="farmer-article-img" />
+            <div class="farmer-article-overlay">
+              <h3 class="farmer-article-title">Teknologi yang Mengubah Cara Petani Bekerja</h3>
+              <p class="farmer-article-desc">Berbagai inovasi teknologi dalam dunia pertanian yang membantu meningkatkan efisiensi dan hasil panen. Dari alat pertanian modern hingga aplikasi berbasis data, teknologi memberikan dampak besar pada cara petani mengelola lahan mereka.</p>
+              <button type="button" class="btn-article-more">Lihat Lebih Lanjut</button>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="farmer-article-card">
+            <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=600&q=80" alt="Tanah" class="farmer-article-img" />
+            <div class="farmer-article-overlay">
+              <h3 class="farmer-article-title">Menjaga Kesehatan Tanah</h3>
+              <p class="farmer-article-desc">Tips tentang pengelolaan tanah yang baik, penggunaan pupuk organik, dan teknik rotasi tanaman.</p>
+              <button type="button" class="btn-article-more">Lihat Lebih Lanjut</button>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="farmer-article-card">
+            <img src="https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?auto=format&fit=crop&w=600&q=80" alt="Bibit" class="farmer-article-img" />
+            <div class="farmer-article-overlay">
+              <h3 class="farmer-article-title">Bibit Pertanian yang Berkualitas</h3>
+              <p class="farmer-article-desc">Memberikan informasi lengkap untuk petani pemula maupun yang berpengalaman untuk memilih bibit.</p>
+              <button type="button" class="btn-article-more">Lihat Lebih Lanjut</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Modal Tambah Panen -->
+  <div class="modal-backdrop" id="modalAdd" onclick="closeModal('modalAdd')">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Tambah Hasil Panen Baru</h2>
+        <button type="button" class="btn-close-modal" onclick="closeModal('modalAdd')">&times;</button>
+      </div>
+
+      <form onsubmit="handleAddNewCrop(event)">
+        <div class="modal-field">
+          <label>Nama Komoditas / Produk :</label>
+          <input type="text" id="cropName" placeholder="Contoh: Kentang Dieng Segar" required />
+        </div>
+
+        <div class="modal-row-2">
+          <div class="modal-field">
+            <label>Kategori :</label>
+            <select id="cropCat">
+              <option value="Sayuran">Sayuran</option>
+              <option value="Buah">Buah-Buahan</option>
+              <option value="Rempah">Rempah-Rempah</option>
+            </select>
+          </div>
+          <div class="modal-field">
+            <label>Harga per Kg :</label>
+            <input type="text" id="cropPrice" placeholder="Contoh: Rp15.000" required />
+          </div>
+        </div>
+
+        <div class="modal-row-2">
+          <div class="modal-field">
+            <label>Pasokan Stok :</label>
+            <input type="text" id="cropStock" placeholder="Contoh: 80 Kg" required />
+          </div>
+          <div class="modal-field">
+            <label>Lokasi Kebun :</label>
+            <input type="text" id="cropLoc" placeholder="Contoh: Wonosobo, Jawa Tengah" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-save-crop">Simpan Hasil Panen &rarr;</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal Konfirmasi Pesanan -->
+  <div class="modal-backdrop" id="modalOrders" onclick="closeModal('modalOrders')">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Konfirmasi Pemesanan Masuk</h2>
+        <button type="button" class="btn-close-modal" onclick="closeModal('modalOrders')">&times;</button>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 12px;">
+        <div style="border: 1px solid #e2e8f0; padding: 14px; border-radius: 8px; background: #f8fafc; display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <div style="font-weight: 700; color: #1e293b;">Ramayuda Mahardika</div>
+            <div style="font-size: 13px; color: #475569;">Tomat Merah Segar &bull; 10 Kg (Rp120.000)</div>
+            <div style="font-size: 11.5px; color: #94a3b8;">Bandung, Jawa Barat</div>
+          </div>
+          <button type="button" style="background: #ff6b35; color: #fff; border: none; padding: 8px 14px; border-radius: 6px; font-weight: 600; cursor: pointer;" onclick="alert('Pesanan Ramayuda berhasil dikonfirmasi!'); this.innerText='Dikonfirmasi &check;'; this.style.background='#16a34a';">
+            Konfirmasi &check;
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="farmer-footer">
+    <div class="container farmer-footer-inner">
+      <span>@2024, PEHTANI, Ramayuda Mahardika</span>
+      <div class="footer-links">
+        <a href="kebijakan-privasi.html">Kebijakan Privasi</a>
+        <a href="syarat-ketentuan.html">Syarat dan Ketentuan</a>
+        <a href="bantuan.html">Bantuan &amp; Kontak</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function openModal(id) {
+      document.getElementById(id).style.display = 'flex';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+
+    function handleAddNewCrop(e) {
+      e.preventDefault();
+      const name = document.getElementById('cropName').value;
+      const cat = document.getElementById('cropCat').value;
+      const price = document.getElementById('cropPrice').value;
+      const stock = document.getElementById('cropStock').value;
+      const loc = document.getElementById('cropLoc').value;
+
+      const grid = document.getElementById('harvestsGrid');
+      const newCard = document.createElement('div');
+      newCard.className = 'harvest-card';
+      newCard.innerHTML = `
+        <div class="harvest-img-box">
+          <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?auto=format&fit=crop&w=500&q=80" alt="${name}" class="harvest-img" />
+        </div>
+        <div class="harvest-info-col">
+          <h3 class="harvest-name">${name}</h3>
+          <span class="harvest-category">${cat}</span>
+          <div class="harvest-price">${price.includes('/ Kg') ? price : price + ' / Kg'}</div>
+          <div class="harvest-location">${loc}</div>
+        </div>
+        <div class="harvest-stock-col">
+          <span class="stock-label">Pasokan</span>
+          <span class="stock-value">${stock.includes('Kg') ? stock : stock + ' Kg'}</span>
+        </div>
+      `;
+      grid.prepend(newCard);
+      closeModal('modalAdd');
+      alert('Hasil panen baru berhasil ditambahkan!');
+    }
+
+    function handleSearchCrops() {
+      const q = document.getElementById('searchCropInput').value.toLowerCase();
+      const cards = document.querySelectorAll('#harvestsGrid .harvest-card');
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        card.style.display = text.includes(q) ? 'flex' : 'none';
+      });
+    }
+  </script>
+</body>
+</html>

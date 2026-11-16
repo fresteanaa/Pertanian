@@ -36,6 +36,30 @@ export default function BackendHomePage() {
       desc: 'Mendapatkan konten data halaman Syarat dan Ketentuan.',
       color: '#0891b2',
     },
+    {
+      method: 'GET',
+      path: '/api/farmer/harvests',
+      desc: 'Mendapatkan daftar hasil panen & stok petani (Daftar Hasil Panen Saya).',
+      color: '#16a34a',
+    },
+    {
+      method: 'POST',
+      path: '/api/farmer/harvests',
+      desc: 'Menambahkan hasil panen baru oleh petani.',
+      color: '#2563eb',
+    },
+    {
+      method: 'GET',
+      path: '/api/farmer/orders',
+      desc: 'Mendapatkan daftar pesanan masuk dari pembeli untuk konfirmasi petani.',
+      color: '#ea580c',
+    },
+    {
+      method: 'PATCH',
+      path: '/api/farmer/orders',
+      desc: 'Mengonfirmasi pesanan masuk dari pembeli.',
+      color: '#ea580c',
+    },
   ];
 
   return (
